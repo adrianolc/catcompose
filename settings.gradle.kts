@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "CatCompose"
 include(":app")
 include(":core:network")
+include(":features:list")
