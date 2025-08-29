@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Module
@@ -20,6 +21,20 @@ internal object NetworkModule {
                 setLevel(HttpLoggingInterceptor.Level.BODY)
             }
         )
+        .addInterceptor {
+            val newRequest = it.request()
+                .newBuilder()
+                .addHeader("x-api-key", "live_LULEx6XMwa5EZvrwoS1dfa7mhyxQV2f9dEMwZqmjWM6PUDbC58nEyJ0WTNq1ge8d")
+                .build()
+
+            it.proceed(newRequest)
+        }
         .build()
 
+    @Provides
+    @Singleton
+    fun providesRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
+        .client(okHttpClient)
+        .baseUrl("https://api.thecatapi.com")
+        .build()
 }

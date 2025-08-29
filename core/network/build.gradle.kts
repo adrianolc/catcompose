@@ -12,8 +12,11 @@ android {
         jvmTarget = "11"
     }
 }
+
 dependencies {
     implementation(libs.hilt.android)
+
+    implementation(libs.retrofit)
 
     implementation(platform(libs.okhttp.bom))
     implementation(libs.okhttp)
