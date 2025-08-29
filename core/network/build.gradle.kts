@@ -14,5 +14,8 @@ android {
 }
 dependencies {
     implementation(libs.hilt.android)
-//    implementation(libs.ok)
+
+    implementation(platform(libs.okhttp.bom))
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging.interceptor)
 }
