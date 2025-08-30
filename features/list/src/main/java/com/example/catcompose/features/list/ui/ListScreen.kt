@@ -24,15 +24,15 @@ internal fun ListScreen(
 ) {
     val viewState by viewModel.viewState.collectAsStateWithLifecycle()
 
-    when (val current = viewState) {
+    when (val currentViewState = viewState) {
         is ListViewState.Error -> TODO()
         is ListViewState.Loading -> TODO()
-        is ListViewState.Success -> Content(modifier = modifier, cats = current.cats)
+        is ListViewState.Success -> ListContent(modifier = modifier, cats = currentViewState.cats)
     }
 }
 
 @Composable
-internal fun Content(
+internal fun ListContent(
     modifier: Modifier,
     cats: List<Cat>
 ) {
@@ -51,7 +51,7 @@ internal fun CatItem(cat: Cat) {
 
     Box(
         modifier = Modifier.clickable {
-            Toast.makeText(ctx, cat.id, Toast.LENGTH_SHORT).show()
+            Toast.makeText(ctx, "Meowww!!", Toast.LENGTH_SHORT).show()
         }
     ) {
         AsyncImage(
@@ -73,5 +73,5 @@ fun CatItemPreview() {
         )
     }
 
-    Content(Modifier, cats)
+    ListContent(Modifier, cats)
 }
