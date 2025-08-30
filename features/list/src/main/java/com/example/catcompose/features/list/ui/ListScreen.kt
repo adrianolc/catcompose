@@ -25,8 +25,12 @@ internal fun ListScreen(
     val viewState by viewModel.viewState.collectAsStateWithLifecycle()
 
     when (val currentViewState = viewState) {
-        is ListViewState.Error -> TODO()
-        is ListViewState.Loading -> TODO()
+        is ListViewState.Error -> {
+            // no-op
+        }
+        is ListViewState.Loading -> {
+            // no-op
+        }
         is ListViewState.Success -> ListContent(modifier = modifier, cats = currentViewState.cats)
     }
 }

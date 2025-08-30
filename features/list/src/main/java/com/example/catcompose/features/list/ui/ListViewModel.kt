@@ -20,10 +20,10 @@ class ListViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            listService.getCats(10)
-                .map { list -> list.map { Cat(it.id, it.url) } }
-                .onSuccess { cats -> _state.value = ListViewState.Success(cats) }
-                .onFailure { ListViewState.Error(it.message ?: "Unknown error") }
+            val list = listService.getCats(10)
+                .map { Cat(it.id, it.url) }
+
+            _state.value = ListViewState.Success(list)
         }
     }
 }
