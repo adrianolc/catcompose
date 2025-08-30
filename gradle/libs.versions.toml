@@ -43,9 +43,14 @@ androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", versi
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
+androidx-compose-ui-tootling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-compose-ui-tootling = { group = "androidx.compose.ui", name = "ui-tooling" }
+
 
 coil-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }
 coil-network = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coil" }
+
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
