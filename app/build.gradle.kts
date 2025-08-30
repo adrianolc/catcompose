@@ -1,8 +1,12 @@
+import com.android.tools.r8.internal.li
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt.android)
+    alias(libs.plugins.compose)
 }
 
 android {
@@ -32,8 +36,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
+    kotlin {
+        compilerOptions {
+            jvmTarget = JvmTarget.JVM_11
+        }
     }
 }
 
@@ -43,6 +49,12 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.splashscreen)
+
+    implementation(libs.androidx.activity.compose)
+
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.ui)
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
