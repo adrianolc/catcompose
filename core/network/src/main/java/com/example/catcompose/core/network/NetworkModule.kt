@@ -35,7 +35,7 @@ internal object NetworkModule {
                 .newBuilder()
                 .addHeader(
                     "x-api-key",
-                    "live_LULEx6XMwa5EZvrwoS1dfa7mhyxQV2f9dEMwZqmjWM6PUDbC58nEyJ0WTNq1ge8d"
+                    BuildConfig.API_KEY
                 )
                 .build()
 
@@ -50,7 +50,7 @@ internal object NetworkModule {
         okHttpClient: OkHttpClient
     ): Retrofit = Retrofit.Builder()
         .client(okHttpClient)
-        .baseUrl("https://api.thecatapi.com")
+        .baseUrl(BuildConfig.BASE_URL)
         .addConverterFactory(
             json.asConverterFactory("application/json".toMediaType())
         )

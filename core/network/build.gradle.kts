@@ -17,6 +17,9 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+        buildConfigField("String", "API_KEY", "\"live_LULEx6XMwa5EZvrwoS1dfa7mhyxQV2f9dEMwZqmjWM6PUDbC58nEyJ0WTNq1ge8d\"")
+        buildConfigField("String", "BASE_URL", "\"https://api.thecatapi.com\"")
     }
 
     buildTypes {
@@ -38,6 +41,11 @@ android {
             jvmTarget = JvmTarget.JVM_11
         }
     }
+    buildFeatures {
+        buildConfig = true
+    }
+
+
 }
 
 dependencies {
