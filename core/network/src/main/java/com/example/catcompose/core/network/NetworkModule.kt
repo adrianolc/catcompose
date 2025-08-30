@@ -4,14 +4,23 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 internal object NetworkModule {
+
+    @Provides
+    @Singleton
+    fun providesJson(): Json = Json {
+        ignoreUnknownKeys = true
+    }
 
     @Provides
     @Singleton
@@ -24,7 +33,10 @@ internal object NetworkModule {
         .addInterceptor {
             val newRequest = it.request()
                 .newBuilder()
-                .addHeader("x-api-key", "live_LULEx6XMwa5EZvrwoS1dfa7mhyxQV2f9dEMwZqmjWM6PUDbC58nEyJ0WTNq1ge8d")
+                .addHeader(
+                    "x-api-key",
+                    "live_LULEx6XMwa5EZvrwoS1dfa7mhyxQV2f9dEMwZqmjWM6PUDbC58nEyJ0WTNq1ge8d"
+                )
                 .build()
 
             it.proceed(newRequest)
@@ -33,8 +45,14 @@ internal object NetworkModule {
 
     @Provides
     @Singleton
-    fun providesRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
+    fun providesRetrofit(
+        json: Json,
+        okHttpClient: OkHttpClient
+    ): Retrofit = Retrofit.Builder()
         .client(okHttpClient)
         .baseUrl("https://api.thecatapi.com")
+        .addConverterFactory(
+            json.asConverterFactory("application/json".toMediaType())
+        )
         .build()
 }
