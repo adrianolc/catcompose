@@ -60,6 +60,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtimeCompose)
     implementation(libs.androidx.hilt.navigation.compose)
 
+    implementation(libs.androidx.navigation.compose)
+
     implementation(libs.retrofit)
     implementation(libs.kotlinx.serialization.json)
 
