@@ -1,5 +1,6 @@
-package com.example.catcompose.core.network
+package com.example.catcompose.core.network.di
 
+import com.example.catcompose.core.network.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
