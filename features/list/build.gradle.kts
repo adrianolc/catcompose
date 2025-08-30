@@ -74,6 +74,8 @@ dependencies {
     implementation(libs.androidx.compose.ui.tootling.preview)
     debugImplementation(libs.androidx.compose.ui.tootling)
 
+    implementation(projects.core.network)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

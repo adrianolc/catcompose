@@ -61,8 +61,8 @@ dependencies {
     ksp(libs.hilt.compiler)
 
     // modules dependencies
-    implementation(project(":core:network"))
-    implementation(project(":features:list"))
+    implementation(projects.core.network)
+    implementation(projects.features.list)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
