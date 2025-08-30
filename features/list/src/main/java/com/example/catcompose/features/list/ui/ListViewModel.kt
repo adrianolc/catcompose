@@ -16,7 +16,7 @@ class ListViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _state = MutableStateFlow<ListViewState>(ListViewState.Loading)
-    val state: StateFlow<ListViewState> = _state.asStateFlow()
+    val viewState: StateFlow<ListViewState> = _state.asStateFlow()
 
     init {
         viewModelScope.launch {
