@@ -1,5 +1,6 @@
 package com.example.catcompose.features.details.ui
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.catcompose.core.network.NetworkResult
@@ -11,8 +12,13 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 internal class DetailsViewModel @Inject constructor(
-    private val detailsRepository: DetailsRepository
+    private val detailsRepository: DetailsRepository,
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
+
+    private val id: String = checkNotNull(savedStateHandle["id"]) {
+        "id is required"
+    }
 
     private val _state = MutableStateFlow<DetailsViewState>(value = DetailsViewState.Loading)
     val state: StateFlow<DetailsViewState> = _state.asStateFlow()
