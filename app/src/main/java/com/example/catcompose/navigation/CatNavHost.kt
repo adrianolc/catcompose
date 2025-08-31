@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import com.example.catcompose.features.details.navigation.DetailsRoute
+import com.example.catcompose.features.details.navigation.detailsScreen
 import com.example.catcompose.features.list.navigation.ListRoute
 import com.example.catcompose.features.list.navigation.listScreen
 
@@ -17,6 +19,9 @@ fun CatNavHost(
         startDestination = ListRoute,
         modifier = modifier,
     ) {
-        listScreen()
+        listScreen { catId ->
+            navController.navigate(route = DetailsRoute.createRoute(catId))
+        }
+        detailsScreen()
     }
 }

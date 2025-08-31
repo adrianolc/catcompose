@@ -1,7 +1,9 @@
 package com.example.catcompose.features.details.navigation
 
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavType
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.example.catcompose.features.details.ui.DetailScreen
 import kotlinx.serialization.Serializable
 
@@ -14,7 +16,10 @@ import kotlinx.serialization.Serializable
 }
 
 fun NavGraphBuilder.detailsScreen() {
-    composable<DetailsRoute> {
+    composable(
+        route = DetailsRoute.route(),
+        arguments = listOf(navArgument(DetailsRoute.argument) { type = NavType.StringType })
+    ) {
         DetailScreen()
     }
 }

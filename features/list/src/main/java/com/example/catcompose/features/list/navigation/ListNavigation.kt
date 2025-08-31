@@ -7,8 +7,10 @@ import kotlinx.serialization.Serializable
 
 @Serializable object ListRoute
 
-fun NavGraphBuilder.listScreen() {
+typealias OnCatClick = (String) -> Unit
+
+fun NavGraphBuilder.listScreen(onCatClick: OnCatClick) {
     composable<ListRoute> {
-        ListScreen()
+        ListScreen(onCatClick)
     }
 }

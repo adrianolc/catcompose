@@ -63,6 +63,7 @@ dependencies {
     // modules dependencies
     implementation(projects.core.network)
     implementation(projects.features.list)
+    implementation(projects.features.details)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
