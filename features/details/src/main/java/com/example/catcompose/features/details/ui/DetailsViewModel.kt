@@ -20,12 +20,12 @@ internal class DetailsViewModel @Inject constructor(
         "id is required"
     }
 
-    private val _state = MutableStateFlow<DetailsViewState>(value = DetailsViewState.Loading)
-    val state: StateFlow<DetailsViewState> = _state.asStateFlow()
+    private val _viewState = MutableStateFlow<DetailsViewState>(value = DetailsViewState.Loading)
+    val viewState: StateFlow<DetailsViewState> = _viewState.asStateFlow()
 
     init {
         viewModelScope.launch {
-            _state.value = when (val result = detailsRepository.getCat(id)) {
+            _viewState.value = when (val result = detailsRepository.getCat(id)) {
                 is NetworkResult.Success -> DetailsViewState.Success(result.data)
                 is NetworkResult.Error -> DetailsViewState.Error(
                     result.exception.message ?: "Unknown error"
