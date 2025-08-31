@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
     private val baseRoute = "details"
     const val argument = "cat_id"
 
-    fun route() = "${baseRoute}/${argument}"
+    fun route() = "${baseRoute}/{${argument}}"
     fun createRoute(id: String) = "${baseRoute}/${id}"
 }
 

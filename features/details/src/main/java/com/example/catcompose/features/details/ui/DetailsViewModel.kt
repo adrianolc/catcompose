@@ -4,19 +4,22 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.catcompose.core.network.NetworkResult
+import com.example.catcompose.features.details.navigation.DetailsRoute
 import com.example.catcompose.features.details.repo.DetailsRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 internal class DetailsViewModel @Inject constructor(
     private val detailsRepository: DetailsRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val id: String = checkNotNull(savedStateHandle["id"]) {
+    private val id: String = checkNotNull(savedStateHandle[DetailsRoute.argument]) {
         "id is required"
     }
 
