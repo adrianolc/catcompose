@@ -1,7 +1,9 @@
 package com.example.catcompose.features.details.api
 
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 internal class BreedResponse (
     @SerialName("id")
     val id: String,

@@ -5,5 +5,8 @@ import retrofit2.http.Query
 
 interface ListService {
     @GET("/v1/images/search")
-    suspend fun getCats(@Query("limit") limit: Int): List<CatResponse>
+    suspend fun getCats(
+        @Query("limit") limit: Int,
+        @Query("has_breeds") hasBreeds: Boolean = true
+    ): List<CatResponse>
 }
