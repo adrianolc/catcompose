@@ -27,7 +27,7 @@ import coil3.compose.AsyncImage
 import com.example.catcompose.features.details.repo.Cat
 
 @Composable
-internal fun CatScreen(
+internal fun DetailScreen(
     modifier: Modifier = Modifier,
     viewModel: DetailsViewModel = hiltViewModel()
 ) {
