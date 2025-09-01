@@ -5,9 +5,8 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.catcompose.features.details.ui.DetailScreen
-import kotlinx.serialization.Serializable
 
-@Serializable object DetailsRoute {
+object DetailsRoute {
     private const val BASE_ROUTE = "details"
     const val ARG_CAT_ID = "cat_id"
 
