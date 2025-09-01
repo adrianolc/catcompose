@@ -19,7 +19,7 @@ internal class DetailsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val id: String = checkNotNull(savedStateHandle[DetailsRoute.argument]) {
+    private val id: String = checkNotNull(savedStateHandle[DetailsRoute.ARG_CAT_ID]) {
         "id is required"
     }
 

@@ -8,17 +8,17 @@ import com.example.catcompose.features.details.ui.DetailScreen
 import kotlinx.serialization.Serializable
 
 @Serializable object DetailsRoute {
-    private val baseRoute = "details"
-    const val argument = "cat_id"
+    private const val BASE_ROUTE = "details"
+    const val ARG_CAT_ID = "cat_id"
 
-    fun route() = "${baseRoute}/{${argument}}"
-    fun createRoute(id: String) = "${baseRoute}/${id}"
+    fun route() = "${BASE_ROUTE}/{${ARG_CAT_ID}}"
+    fun createRoute(id: String) = "${BASE_ROUTE}/${id}"
 }
 
 fun NavGraphBuilder.detailsScreen() {
     composable(
         route = DetailsRoute.route(),
-        arguments = listOf(navArgument(DetailsRoute.argument) { type = NavType.StringType })
+        arguments = listOf(navArgument(DetailsRoute.ARG_CAT_ID) { type = NavType.StringType })
     ) {
         DetailScreen()
     }
