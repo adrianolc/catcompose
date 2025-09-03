@@ -3,9 +3,8 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.hilt.android)
-    alias(libs.plugins.ksp)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.catcompose.hilt)
 }
 
 android {
@@ -44,13 +43,9 @@ android {
     buildFeatures {
         buildConfig = true
     }
-
-
 }
 
 dependencies {
-    implementation(libs.hilt.android)
-
     implementation(libs.retrofit)
     implementation(libs.retrofit.kotlin.serialization)
     implementation(libs.kotlinx.serialization.json)
@@ -58,7 +53,4 @@ dependencies {
     implementation(platform(libs.okhttp.bom))
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging.interceptor)
-
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.compiler)
 }

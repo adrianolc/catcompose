@@ -4,9 +4,8 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
-    alias(libs.plugins.hilt.android)
-    alias(libs.plugins.ksp)
     alias(libs.plugins.compose)
+    alias(libs.plugins.catcompose.hilt)
 }
 
 android {
@@ -65,9 +64,6 @@ dependencies {
 
     implementation(libs.retrofit)
     implementation(libs.kotlinx.serialization.json)
-
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.compiler)
 
     implementation(libs.coil.compose)
     implementation(libs.coil.network)
