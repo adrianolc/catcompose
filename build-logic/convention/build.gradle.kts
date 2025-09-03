@@ -4,7 +4,7 @@ plugins {
     `kotlin-dsl`
 }
 
-group = "com.com.example.catcompose.buildlogic"
+group = "com.example.catcompose.buildlogic"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -14,5 +14,14 @@ java {
 kotlin {
     compilerOptions {
         jvmTarget = JvmTarget.JVM_17
+    }
+}
+
+gradlePlugin {
+    plugins {
+        register("hilt") {
+            id = libs.plugins.catcompose.hilt.get().pluginId
+            implementationClass = "HiltPlugin"
+        }
     }
 }
