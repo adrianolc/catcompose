@@ -68,3 +68,4 @@ jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin"
 
 # project plugins
 catcompose-hilt = { id = "catcompose.hilt" }
+catcompose-compose = { id = "catcompose.compose" }

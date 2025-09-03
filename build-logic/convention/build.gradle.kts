@@ -23,5 +23,9 @@ gradlePlugin {
             id = libs.plugins.catcompose.hilt.get().pluginId
             implementationClass = "HiltPlugin"
         }
+        register("compose") {
+            id = libs.plugins.catcompose.compose.get().pluginId
+            implementationClass = "ComposePlugin"
+        }
     }
 }
