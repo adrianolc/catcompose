@@ -7,7 +7,7 @@ import org.gradle.kotlin.dsl.dependencies
 class ComposePlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            apply(plugin = "org.jetbrains.compose")
+            apply(plugin = "org.jetbrains.kotlin.plugin.compose")
 
             dependencies {
                 val bom = libs.findLibrary("androidx-compose-bom").get()
