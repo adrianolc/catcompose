@@ -17,6 +17,11 @@ kotlin {
     }
 }
 
+dependencies {
+    compileOnly(libs.android.gradlePlugin)
+    compileOnly(libs.kotlin.gradlePlugin)
+}
+
 gradlePlugin {
     plugins {
         register("hilt") {
@@ -26,6 +31,10 @@ gradlePlugin {
         register("compose") {
             id = libs.plugins.catcompose.compose.get().pluginId
             implementationClass = "ComposePlugin"
+        }
+        register("android-library") {
+            id = libs.plugins.catcompose.android.library.get().pluginId
+            implementationClass = "AndroidLibraryPlugin"
         }
     }
 }

@@ -54,7 +54,9 @@ androidx-compose-ui-tootling = { group = "androidx.compose.ui", name = "ui-tooli
 coil-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }
 coil-network = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coil" }
 
-
+# build-logic plugins dependencies
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -69,3 +71,4 @@ jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin"
 # project plugins
 catcompose-hilt = { id = "catcompose.hilt" }
 catcompose-compose = { id = "catcompose.compose" }
+catcompose-android-library = { id = "catcompose.android.library" }
