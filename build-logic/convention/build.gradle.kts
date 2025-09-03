@@ -36,5 +36,9 @@ gradlePlugin {
             id = libs.plugins.catcompose.android.library.get().pluginId
             implementationClass = "AndroidLibraryPlugin"
         }
+        register("feature") {
+            id = libs.plugins.catcompose.feature.get().pluginId
+            implementationClass = "FeaturePlugin"
+        }
     }
 }

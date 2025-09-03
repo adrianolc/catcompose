@@ -39,6 +39,7 @@ class AndroidLibraryPlugin : Plugin<Project> {
 
                 extensions.configure<KotlinAndroidProjectExtension> {
                     compilerOptions.jvmTarget.set(JvmTarget.JVM_17)
+                    compilerOptions.optIn.add("kotlin.contracts.ExperimentalContracts")
                 }
             }
         }
