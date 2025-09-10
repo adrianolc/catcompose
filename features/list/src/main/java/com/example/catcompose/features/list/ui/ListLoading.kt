@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.valentinilk.shimmer.shimmer
 
 @Composable
-fun ListLoading(
+internal fun ListLoading(
     modifier: Modifier = Modifier
 ) {
     Column(
