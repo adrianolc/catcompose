@@ -11,8 +11,8 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.kotlinx.serialization.json)
 
-    implementation(libs.coil.compose)
-    implementation(libs.coil.network)
+    implementation(libs.bundles.coil)
+    implementation(libs.shimmer)
 
     implementation(projects.core.network)
 }
