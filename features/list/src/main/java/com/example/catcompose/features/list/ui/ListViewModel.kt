@@ -3,7 +3,6 @@ package com.example.catcompose.features.list.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.catcompose.core.network.NetworkResult
-import com.example.catcompose.features.list.api.ListService
 import com.example.catcompose.features.list.repo.ListRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
