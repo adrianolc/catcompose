@@ -8,9 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.catcompose.navigation.CatNavHost
 
 @Composable
-fun CatApp(
-    modifier: Modifier = Modifier,
-) {
+fun CatApp(modifier: Modifier = Modifier) {
     Scaffold { padding ->
         CatNavHost(
             navController = rememberNavController(),

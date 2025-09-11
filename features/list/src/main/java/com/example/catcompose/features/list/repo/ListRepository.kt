@@ -6,10 +6,13 @@ import com.example.catcompose.features.list.api.ListService
 import com.example.catcompose.features.list.ui.Cat
 import javax.inject.Inject
 
-internal class ListRepository @Inject constructor(
-    private val listService: ListService
-) {
-    suspend fun getCats(): NetworkResult<List<Cat>> = asNetworkResult {
-        listService.getCats(10).map { Cat(it.id, it.url) }
+internal class ListRepository
+    @Inject
+    constructor(
+        private val listService: ListService,
+    ) {
+        suspend fun getCats(): NetworkResult<List<Cat>> =
+            asNetworkResult {
+                listService.getCats(10).map { Cat(it.id, it.url) }
+            }
     }
-}

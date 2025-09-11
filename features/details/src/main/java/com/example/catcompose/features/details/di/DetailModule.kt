@@ -13,6 +13,5 @@ import javax.inject.Singleton
 internal object DetailModule {
     @Provides
     @Singleton
-    fun provideDetailsService(retrofit: Retrofit): DetailsService =
-        retrofit.create(DetailsService::class.java)
+    fun provideDetailsService(retrofit: Retrofit): DetailsService = retrofit.create(DetailsService::class.java)
 }

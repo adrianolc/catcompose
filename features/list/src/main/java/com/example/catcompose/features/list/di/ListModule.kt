@@ -11,7 +11,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal object ListModule {
-
     @Provides
     @Singleton
     fun providesListService(retrofit: Retrofit): ListService = retrofit.create(ListService::class.java)

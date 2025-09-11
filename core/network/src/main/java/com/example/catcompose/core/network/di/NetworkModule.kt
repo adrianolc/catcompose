@@ -16,44 +16,46 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal object NetworkModule {
-
     @Provides
     @Singleton
-    fun providesJson(): Json = Json {
-        ignoreUnknownKeys = true
-    }
-
-    @Provides
-    @Singleton
-    fun okHttpClient(): OkHttpClient = OkHttpClient.Builder()
-        .addInterceptor(
-            HttpLoggingInterceptor().apply {
-                setLevel(HttpLoggingInterceptor.Level.BODY)
-            }
-        )
-        .addInterceptor {
-            val newRequest = it.request()
-                .newBuilder()
-                .addHeader(
-                    "x-api-key",
-                    BuildConfig.API_KEY
-                )
-                .build()
-
-            it.proceed(newRequest)
+    fun providesJson(): Json =
+        Json {
+            ignoreUnknownKeys = true
         }
-        .build()
+
+    @Provides
+    @Singleton
+    fun okHttpClient(): OkHttpClient =
+        OkHttpClient
+            .Builder()
+            .addInterceptor(
+                HttpLoggingInterceptor().apply {
+                    setLevel(HttpLoggingInterceptor.Level.BODY)
+                },
+            ).addInterceptor {
+                val newRequest =
+                    it
+                        .request()
+                        .newBuilder()
+                        .addHeader(
+                            "x-api-key",
+                            BuildConfig.API_KEY,
+                        ).build()
+
+                it.proceed(newRequest)
+            }.build()
 
     @Provides
     @Singleton
     fun providesRetrofit(
         json: Json,
-        okHttpClient: OkHttpClient
-    ): Retrofit = Retrofit.Builder()
-        .client(okHttpClient)
-        .baseUrl(BuildConfig.BASE_URL)
-        .addConverterFactory(
-            json.asConverterFactory("application/json".toMediaType())
-        )
-        .build()
+        okHttpClient: OkHttpClient,
+    ): Retrofit =
+        Retrofit
+            .Builder()
+            .client(okHttpClient)
+            .baseUrl(BuildConfig.BASE_URL)
+            .addConverterFactory(
+                json.asConverterFactory("application/json".toMediaType()),
+            ).build()
 }

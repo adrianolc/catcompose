@@ -7,6 +7,6 @@ interface ListService {
     @GET("/v1/images/search")
     suspend fun getCats(
         @Query("limit") limit: Int,
-        @Query("has_breeds") hasBreeds: Boolean = true
+        @Query("has_breeds") hasBreeds: Boolean = true,
     ): List<CatResponse>
 }

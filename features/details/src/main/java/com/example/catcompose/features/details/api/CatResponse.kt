@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal class CatResponse (
+internal class CatResponse(
     @SerialName("id")
     val id: String,
     @SerialName("url")

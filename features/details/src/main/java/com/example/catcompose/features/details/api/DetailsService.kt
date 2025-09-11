@@ -5,5 +5,7 @@ import retrofit2.http.Path
 
 internal interface DetailsService {
     @GET("/v1/images/{id}")
-    suspend fun getCat(@Path("id") id: String): CatResponse
+    suspend fun getCat(
+        @Path("id") id: String,
+    ): CatResponse
 }

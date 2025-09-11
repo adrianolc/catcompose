@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal class BreedResponse (
+internal class BreedResponse(
     @SerialName("id")
     val id: String,
     @SerialName("name")

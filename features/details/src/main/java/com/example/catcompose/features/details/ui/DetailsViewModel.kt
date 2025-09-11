@@ -14,26 +14,30 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-internal class DetailsViewModel @Inject constructor(
-    private val detailsRepository: DetailsRepository,
-    savedStateHandle: SavedStateHandle
-) : ViewModel() {
+internal class DetailsViewModel
+    @Inject
+    constructor(
+        private val detailsRepository: DetailsRepository,
+        savedStateHandle: SavedStateHandle,
+    ) : ViewModel() {
+        private val id: String =
+            checkNotNull(savedStateHandle[DetailsRoute.ARG_CAT_ID]) {
+                "id is required"
+            }
 
-    private val id: String = checkNotNull(savedStateHandle[DetailsRoute.ARG_CAT_ID]) {
-        "id is required"
-    }
+        private val _viewState = MutableStateFlow<DetailsViewState>(value = DetailsViewState.Loading)
+        val viewState: StateFlow<DetailsViewState> = _viewState.asStateFlow()
 
-    private val _viewState = MutableStateFlow<DetailsViewState>(value = DetailsViewState.Loading)
-    val viewState: StateFlow<DetailsViewState> = _viewState.asStateFlow()
-
-    init {
-        viewModelScope.launch {
-            _viewState.value = when (val result = detailsRepository.getCat(id)) {
-                is NetworkResult.Success -> DetailsViewState.Success(result.data)
-                is NetworkResult.Error -> DetailsViewState.Error(
-                    result.exception.message ?: "Unknown error"
-                )
+        init {
+            viewModelScope.launch {
+                _viewState.value =
+                    when (val result = detailsRepository.getCat(id)) {
+                        is NetworkResult.Success -> DetailsViewState.Success(result.data)
+                        is NetworkResult.Error ->
+                            DetailsViewState.Error(
+                                result.exception.message ?: "Unknown error",
+                            )
+                    }
             }
         }
     }
-}

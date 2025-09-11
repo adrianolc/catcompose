@@ -13,21 +13,24 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-internal class ListViewModel @Inject constructor(
-    private val listRepository: ListRepository
-) : ViewModel() {
+internal class ListViewModel
+    @Inject
+    constructor(
+        private val listRepository: ListRepository,
+    ) : ViewModel() {
+        private val _state = MutableStateFlow<ListViewState>(value = ListViewState.Loading)
+        val viewState: StateFlow<ListViewState> = _state.asStateFlow()
 
-    private val _state = MutableStateFlow<ListViewState>(value = ListViewState.Loading)
-    val viewState: StateFlow<ListViewState> = _state.asStateFlow()
-
-    init {
-        viewModelScope.launch {
-            _state.value = when (val result = listRepository.getCats()) {
-                is NetworkResult.Error -> ListViewState.Error(
-                    message = result.exception.message ?: "Unknown error"
-                )
-                is NetworkResult.Success -> ListViewState.Success(cats = result.data)
+        init {
+            viewModelScope.launch {
+                _state.value =
+                    when (val result = listRepository.getCats()) {
+                        is NetworkResult.Error ->
+                            ListViewState.Error(
+                                message = result.exception.message ?: "Unknown error",
+                            )
+                        is NetworkResult.Success -> ListViewState.Success(cats = result.data)
+                    }
             }
         }
     }
-}

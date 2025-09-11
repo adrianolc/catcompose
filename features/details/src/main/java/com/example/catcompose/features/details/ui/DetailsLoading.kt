@@ -20,41 +20,46 @@ import com.valentinilk.shimmer.shimmer
 @Composable
 fun DetailsLoading(modifier: Modifier = Modifier) {
     Column(
-        modifier = modifier
-            .shimmer()
-            .fillMaxSize()
+        modifier =
+            modifier
+                .shimmer()
+                .fillMaxSize(),
     ) {
         Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(240.dp)
-                .background(Color.LightGray)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .height(240.dp)
+                    .background(Color.LightGray),
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         Column(
-            modifier = Modifier.padding(horizontal = 16.dp)
+            modifier = Modifier.padding(horizontal = 16.dp),
         ) {
-            Box(modifier
-                .height(24.dp)
-                .fillMaxWidth()
+            Box(
+                modifier
+                    .height(24.dp)
+                    .fillMaxWidth(),
             )
 
             Spacer(modifier = Modifier.height(12.dp))
 
             Text(text = "Temperament:", fontWeight = FontWeight.SemiBold)
-            Box(modifier
-                .height(34.dp)
-                .background(Color.LightGray)
+            Box(
+                modifier
+                    .height(34.dp)
+                    .background(Color.LightGray),
             )
 
             Spacer(modifier = Modifier.height(12.dp))
 
             Text(text = "Description:", fontWeight = FontWeight.SemiBold)
-            Box(modifier
-                .height(34.dp)
-                .background(Color.LightGray)
+            Box(
+                modifier
+                    .height(34.dp)
+                    .background(Color.LightGray),
             )
 
             Spacer(modifier = Modifier.height(16.dp))

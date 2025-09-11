@@ -27,23 +27,25 @@ import com.example.catcompose.features.details.repo.Cat
 @Composable
 internal fun CatDetailContent(
     modifier: Modifier,
-    cat: Cat
+    cat: Cat,
 ) {
     val breed = cat.breed
     val uriHandler = LocalUriHandler.current
 
     Column(
-        modifier = modifier
-            .fillMaxSize()
-            .verticalScroll(state = rememberScrollState())
+        modifier =
+            modifier
+                .fillMaxSize()
+                .verticalScroll(state = rememberScrollState()),
     ) {
         AsyncImage(
             model = cat.url,
             contentDescription = breed?.name,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(240.dp),
-            contentScale = ContentScale.Crop
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .height(240.dp),
+            contentScale = ContentScale.Crop,
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -51,17 +53,17 @@ internal fun CatDetailContent(
         if (breed == null) return
 
         Column(
-            modifier = Modifier.padding(horizontal = 16.dp)
+            modifier = Modifier.padding(horizontal = 16.dp),
         ) {
             Text(
                 text = breed.name,
                 fontSize = 22.sp,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
             )
             Text(
                 text = "Origin: ${breed.origin}",
                 fontSize = 16.sp,
-                color = MaterialTheme.colorScheme.secondary
+                color = MaterialTheme.colorScheme.secondary,
             )
 
             Spacer(modifier = Modifier.height(12.dp))
@@ -85,10 +87,9 @@ internal fun CatDetailContent(
 
             Spacer(modifier = Modifier.height(20.dp))
 
-
             Button(
                 onClick = { uriHandler.openUri(breed.wikipediaUrl) },
-                modifier = Modifier.align(Alignment.CenterHorizontally)
+                modifier = Modifier.align(Alignment.CenterHorizontally),
             ) {
                 Text("Open Wikipedia")
             }
@@ -97,13 +98,16 @@ internal fun CatDetailContent(
 }
 
 @Composable
-internal fun BreedStatsRow(label: String, value: Int) {
+internal fun BreedStatsRow(
+    label: String,
+    value: Int,
+) {
     Row(
-        modifier = Modifier.padding(vertical = 2.dp)
+        modifier = Modifier.padding(vertical = 2.dp),
     ) {
         Text(
             text = "$label:",
-            modifier = Modifier.width(120.dp)
+            modifier = Modifier.width(120.dp),
         )
 
         repeat(5) { index ->

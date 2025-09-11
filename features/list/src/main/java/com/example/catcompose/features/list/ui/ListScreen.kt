@@ -22,10 +22,11 @@ internal fun ListScreen(
 
         is ListViewState.Loading -> ListLoading(modifier)
 
-        is ListViewState.Success -> ListContent(
-            modifier = modifier,
-            cats = currentViewState.cats,
-            onCatClick = onCatClick,
-        )
+        is ListViewState.Success ->
+            ListContent(
+                modifier = modifier,
+                cats = currentViewState.cats,
+                onCatClick = onCatClick,
+            )
     }
 }

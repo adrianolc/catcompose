@@ -15,21 +15,21 @@ import androidx.compose.ui.unit.dp
 import com.valentinilk.shimmer.shimmer
 
 @Composable
-internal fun ListLoading(
-    modifier: Modifier = Modifier
-) {
+internal fun ListLoading(modifier: Modifier = Modifier) {
     Column(
-        modifier = modifier
-            .shimmer()
-            .fillMaxSize(),
-        verticalArrangement = Arrangement.spacedBy(space = 8.dp)
+        modifier =
+            modifier
+                .shimmer()
+                .fillMaxSize(),
+        verticalArrangement = Arrangement.spacedBy(space = 8.dp),
     ) {
         repeat(times = 4) {
             Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(200.dp)
-                    .background(Color.LightGray),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .height(200.dp)
+                        .background(Color.LightGray),
             )
         }
     }

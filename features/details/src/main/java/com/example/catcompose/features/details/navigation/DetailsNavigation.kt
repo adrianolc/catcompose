@@ -11,13 +11,14 @@ object DetailsRoute {
     const val ARG_CAT_ID = "cat_id"
 
     fun route() = "${BASE_ROUTE}/{${ARG_CAT_ID}}"
-    fun createRoute(id: String) = "${BASE_ROUTE}/${id}"
+
+    fun createRoute(id: String) = "${BASE_ROUTE}/$id"
 }
 
 fun NavGraphBuilder.detailsScreen() {
     composable(
         route = DetailsRoute.route(),
-        arguments = listOf(navArgument(DetailsRoute.ARG_CAT_ID) { type = NavType.StringType })
+        arguments = listOf(navArgument(DetailsRoute.ARG_CAT_ID) { type = NavType.StringType }),
     ) {
         DetailScreen()
     }

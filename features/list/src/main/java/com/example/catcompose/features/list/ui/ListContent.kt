@@ -20,7 +20,7 @@ import com.example.catcompose.features.list.navigation.OnCatClick
 internal fun ListContent(
     modifier: Modifier,
     cats: List<Cat>,
-    onCatClick: OnCatClick
+    onCatClick: OnCatClick,
 ) {
     LazyColumn(
         modifier = modifier,
@@ -29,7 +29,7 @@ internal fun ListContent(
     ) {
         items(
             items = cats,
-            key = { it.id }
+            key = { it.id },
         ) { cat -> CatItem(cat, onCatClick) }
     }
 }
@@ -40,12 +40,13 @@ internal fun CatItem(
     onCatClick: OnCatClick,
 ) {
     AsyncImage(
-        modifier = Modifier
-            .height(200.dp)
-            .fillMaxWidth()
-            .clickable {
-                onCatClick(cat.id)
-            },
+        modifier =
+            Modifier
+                .height(200.dp)
+                .fillMaxWidth()
+                .clickable {
+                    onCatClick(cat.id)
+                },
         model = cat.url,
         contentScale = ContentScale.FillWidth,
         contentDescription = null,
@@ -55,16 +56,16 @@ internal fun CatItem(
 @Preview
 @Composable
 fun CatItemPreview() {
-    val cats = List(4) { index ->
-        Cat(
-            id = index.toString(),
-            url = "https://cdn2.thecatapi.com/images/${index}.jpg",
-        )
-    }
+    val cats =
+        List(4) { index ->
+            Cat(
+                id = index.toString(),
+                url = "https://cdn2.thecatapi.com/images/$index.jpg",
+            )
+        }
 
     MaterialTheme {
         ListContent(Modifier, cats) {
-
         }
     }
 }

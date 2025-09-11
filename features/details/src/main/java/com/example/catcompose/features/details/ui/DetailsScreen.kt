@@ -30,7 +30,7 @@ import com.example.catcompose.features.details.repo.Cat
 @Composable
 internal fun DetailScreen(
     modifier: Modifier = Modifier,
-    viewModel: DetailsViewModel = hiltViewModel()
+    viewModel: DetailsViewModel = hiltViewModel(),
 ) {
     val viewState by viewModel.viewState.collectAsStateWithLifecycle()
 
@@ -44,4 +44,3 @@ internal fun DetailScreen(
         is DetailsViewState.Success -> CatDetailContent(modifier = modifier, cat = state.cat)
     }
 }
-
