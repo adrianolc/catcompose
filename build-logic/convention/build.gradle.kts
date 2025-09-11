@@ -40,5 +40,9 @@ gradlePlugin {
             id = libs.plugins.catcompose.feature.get().pluginId
             implementationClass = "FeaturePlugin"
         }
+        register("lint") {
+            id = libs.plugins.catcompose.lint.get().pluginId
+            implementationClass = "LintPlugin"
+        }
     }
 }

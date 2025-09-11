@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.compose)
     alias(libs.plugins.kotlinter)
+    alias(libs.plugins.catcompose.lint)
 }
 
 android {
