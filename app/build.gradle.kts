@@ -65,6 +65,7 @@ dependencies {
     implementation(projects.core.network)
     implementation(projects.features.list)
     implementation(projects.features.details)
+    implementation(projects.core.designsystem)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

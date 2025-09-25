@@ -6,13 +6,13 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 
-internal val LightColorScheme = lightColorScheme(
-    primary = Orange
-)
+internal val LightColorScheme =
+    lightColorScheme(
+        primary = Orange,
+    )
 
-internal val DarkColorScheme = darkColorScheme(
-
-)
+internal val DarkColorScheme =
+    darkColorScheme()
 
 @Composable
 fun CatTheme(
@@ -23,6 +23,6 @@ fun CatTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        content = content
+        content = content,
     )
 }
