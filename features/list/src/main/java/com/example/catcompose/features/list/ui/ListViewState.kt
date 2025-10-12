@@ -1,6 +1,6 @@
 package com.example.catcompose.features.list.ui
 
-sealed interface ListViewState {
+internal sealed interface ListViewState {
     data object Loading : ListViewState
 
     data class Success(

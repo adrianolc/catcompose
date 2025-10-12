@@ -58,7 +58,7 @@ internal fun CatItem(
 
 @Preview
 @Composable
-fun CatItemPreview() {
+internal fun CatItemPreview() {
     val cats =
         List(4) { index ->
             Cat(

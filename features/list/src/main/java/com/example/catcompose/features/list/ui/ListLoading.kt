@@ -42,6 +42,6 @@ internal fun ListLoading(modifier: Modifier = Modifier) {
 
 @Preview
 @Composable
-fun ListLoadingPreview() {
+internal fun ListLoadingPreview() {
     ListLoading()
 }

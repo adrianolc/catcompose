@@ -15,7 +15,7 @@ internal val DarkColorScheme =
     darkColorScheme()
 
 @Composable
-fun CatTheme(
+public fun CatTheme(
     isDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {

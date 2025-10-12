@@ -6,16 +6,16 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.catcompose.features.details.ui.DetailScreen
 
-object DetailsRoute {
+public object DetailsRoute {
     private const val BASE_ROUTE = "details"
-    const val ARG_CAT_ID = "cat_id"
+    public const val ARG_CAT_ID: String = "cat_id"
 
-    fun route() = "${BASE_ROUTE}/{${ARG_CAT_ID}}"
+    public fun route(): String = "${BASE_ROUTE}/{${ARG_CAT_ID}}"
 
-    fun createRoute(id: String) = "${BASE_ROUTE}/$id"
+    public fun createRoute(id: String): String = "${BASE_ROUTE}/$id"
 }
 
-fun NavGraphBuilder.detailsScreen() {
+public fun NavGraphBuilder.detailsScreen() {
     composable(
         route = DetailsRoute.route(),
         arguments = listOf(navArgument(DetailsRoute.ARG_CAT_ID) { type = NavType.StringType }),

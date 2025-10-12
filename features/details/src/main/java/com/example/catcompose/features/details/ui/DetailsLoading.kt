@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.valentinilk.shimmer.shimmer
 
 @Composable
-fun DetailsLoading(modifier: Modifier = Modifier) {
+internal fun DetailsLoading(modifier: Modifier = Modifier) {
     Column(
         modifier =
             modifier
@@ -76,6 +76,6 @@ fun DetailsLoading(modifier: Modifier = Modifier) {
 
 @Preview
 @Composable
-fun DetailsLoadingPreview() {
+internal fun DetailsLoadingPreview() {
     DetailsLoading()
 }
