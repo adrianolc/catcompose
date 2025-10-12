@@ -23,14 +23,9 @@ public inline fun <T> asNetworkResult(action: () -> T): NetworkResult<T> {
     }
     return try {
         NetworkResult.Success(data = action())
-    } catch (e: Throwable) {
-        e.asNetworkErrorOrThrow()
+    } catch (e: HttpException) {
+        NetworkResult.Error(e)
+    } catch (e: IOException) {
+        NetworkResult.Error(e)
     }
 }
-
-public fun Throwable.asNetworkErrorOrThrow(): NetworkResult.Error =
-    when (this) {
-        is HttpException -> NetworkResult.Error(this)
-        is IOException -> NetworkResult.Error(this)
-        else -> throw this
-    }
