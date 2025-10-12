@@ -1,0 +1,19 @@
+name: Auto Merge
+on:
+  check_run:
+    types:
+      - rerequested
+      - completed
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: pascalgn/automerge-action@v0.14.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MERGE_LABELS: "dependencies"
+          MERGE_METHOD: "squash"
+          MERGE_COMMIT_MESSAGE: "pull-request-title"
+          MERGE_RETRY_SLEEP: "6000"
+          LOG: "DEBUG"
