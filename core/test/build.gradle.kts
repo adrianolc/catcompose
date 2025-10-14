@@ -11,4 +11,5 @@ dependencies {
     api(libs.kotlinx.coroutines.test)
     api(libs.turbine.test)
     api(libs.kotest)
+    api(libs.mockk)
 }
