@@ -42,6 +42,10 @@ retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = 
 retrofit-kotlin-serialization = { group = "com.squareup.retrofit2", name = "converter-kotlinx-serialization", version.ref = "retrofit" }
 
 kotlinx-serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0"
+kotlinx-coroutines-test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2"
+
+turbine-test = "app.cash.turbine:turbine:1.2.1"
+kotest = "io.kotest:kotest-assertions-core:6.0.3"
 
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }

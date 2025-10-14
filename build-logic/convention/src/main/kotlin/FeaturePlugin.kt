@@ -18,6 +18,9 @@ class FeaturePlugin : Plugin<Project> {
                 "implementation"(libs.findLibrary("material").get())
 
                 "testImplementation"(libs.findLibrary("junit").get())
+                "testImplementation"(libs.findLibrary("kotlinx.coroutines.test").get())
+                "testImplementation"(libs.findLibrary("turbine.test").get())
+                "testImplementation"(libs.findLibrary("kotest").get())
                 "androidTestImplementation"(libs.findLibrary("androidx.junit").get())
                 "androidTestImplementation"(libs.findLibrary("androidx.espresso.core").get())
             }
