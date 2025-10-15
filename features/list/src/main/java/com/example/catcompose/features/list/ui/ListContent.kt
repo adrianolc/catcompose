@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
@@ -25,7 +26,7 @@ internal fun ListContent(
     onCatClick: OnCatClick,
 ) {
     LazyColumn(
-        modifier = modifier,
+        modifier = modifier.testTag("cat_list"),
         contentPadding = PaddingValues(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(space = 8.dp),
     ) {
@@ -49,7 +50,7 @@ internal fun CatItem(
                 .fillMaxWidth()
                 .clickable {
                     onCatClick(cat.id)
-                },
+                }.testTag("cat_item"),
         model = cat.url,
         contentScale = ContentScale.FillWidth,
         contentDescription = null,

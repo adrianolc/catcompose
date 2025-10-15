@@ -1,0 +1,16 @@
+appId: com.example.catcompose
+---
+- launchApp
+- extendedWaitUntil:
+    visible:
+      id: list_loading
+    timeout: 10000
+- assertNotVisible:
+    id: list_loading
+- assertVisible:
+    id: cat_list
+- tapOn:
+    id: cat_item
+    index: 0
+- assertVisible:
+    id: cat_details
