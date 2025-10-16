@@ -1,3 +1,9 @@
 #!/bin/bash
 
+echo "Running Kotlin Format..."
+
 ./gradlew formatKotlin
+
+git add .
+
+echo "Kotlin Format done and changes staged!"
