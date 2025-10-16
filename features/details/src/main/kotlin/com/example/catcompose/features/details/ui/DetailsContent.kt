@@ -1,5 +1,6 @@
 package com.example.catcompose.features.details.ui
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -10,12 +11,21 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.testTag
@@ -25,6 +35,7 @@ import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.example.catcompose.features.details.repo.Cat
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun CatDetailContent(
     modifier: Modifier,
@@ -40,15 +51,34 @@ internal fun CatDetailContent(
                 .verticalScroll(state = rememberScrollState())
                 .testTag("cat_details"),
     ) {
-        AsyncImage(
-            model = cat.url,
-            contentDescription = breed?.name,
-            modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .height(240.dp),
-            contentScale = ContentScale.Crop,
-        )
+        Box {
+            AsyncImage(
+                model = cat.url,
+                contentDescription = breed?.name,
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .height(360.dp),
+                contentScale = ContentScale.Crop,
+            )
+
+            TopAppBar(
+                title = {},
+                navigationIcon = {
+                    IconButton(onClick = { }) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Default.ArrowBack,
+                            contentDescription = "Back",
+                        )
+                    }
+                },
+                colors =
+                    TopAppBarDefaults.topAppBarColors(
+                        containerColor = Color.Transparent,
+                        navigationIconContentColor = MaterialTheme.colorScheme.onSurface,
+                    ),
+            )
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
 
