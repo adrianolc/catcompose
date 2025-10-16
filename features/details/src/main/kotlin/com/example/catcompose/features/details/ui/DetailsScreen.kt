@@ -8,6 +8,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 internal fun DetailScreen(
+    onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: DetailsViewModel = hiltViewModel(),
 ) {
@@ -20,6 +21,11 @@ internal fun DetailScreen(
 
         is DetailsViewState.Loading -> DetailsLoading(modifier)
 
-        is DetailsViewState.Success -> CatDetailContent(modifier = modifier, cat = state.cat)
+        is DetailsViewState.Success ->
+            CatDetailContent(
+                modifier = modifier,
+                cat = state.cat,
+                onBackClick = onBackClick,
+            )
     }
 }

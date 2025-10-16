@@ -15,11 +15,11 @@ public object DetailsRoute {
     public fun createRoute(id: String): String = "${BASE_ROUTE}/$id"
 }
 
-public fun NavGraphBuilder.detailsScreen() {
+public fun NavGraphBuilder.detailsScreen(onBackClick: () -> Unit) {
     composable(
         route = DetailsRoute.route(),
         arguments = listOf(navArgument(DetailsRoute.ARG_CAT_ID) { type = NavType.StringType }),
     ) {
-        DetailScreen()
+        DetailScreen(onBackClick)
     }
 }

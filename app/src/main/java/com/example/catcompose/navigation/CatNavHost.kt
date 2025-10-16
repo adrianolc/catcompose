@@ -22,6 +22,8 @@ fun CatNavHost(
         listScreen { catId ->
             navController.navigate(route = DetailsRoute.createRoute(catId))
         }
-        detailsScreen()
+        detailsScreen {
+            navController.popBackStack()
+        }
     }
 }
