@@ -8,7 +8,8 @@ import androidx.compose.runtime.Composable
 
 internal val LightColorScheme =
     lightColorScheme(
-        primary = Orange,
+        primary = Orange_500,
+        secondary = Orange_800,
     )
 
 internal val DarkColorScheme =

@@ -6,3 +6,8 @@ plugins {
 android {
     namespace = "com.example.catcompose.core.designsystem"
 }
+
+dependencies {
+    implementation(libs.material)
+    implementation(libs.androidx.splashscreen)
+}
