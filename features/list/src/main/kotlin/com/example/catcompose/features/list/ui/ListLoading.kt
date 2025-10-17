@@ -24,7 +24,7 @@ internal fun ListLoading(modifier: Modifier = Modifier) {
         modifier =
             modifier
                 .shimmer()
-                .padding(horizontal = 16.dp)
+                .padding(top = 8.dp, start = 16.dp, end = 16.dp)
                 .fillMaxSize()
                 .testTag("list_loading"),
         verticalArrangement = Arrangement.spacedBy(space = 8.dp),

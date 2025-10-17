@@ -27,7 +27,7 @@ internal fun ListContent(
 ) {
     LazyColumn(
         modifier = modifier.testTag("cat_list"),
-        contentPadding = PaddingValues(horizontal = 16.dp),
+        contentPadding = PaddingValues(top = 8.dp, start = 16.dp, end = 16.dp),
         verticalArrangement = Arrangement.spacedBy(space = 8.dp),
     ) {
         items(

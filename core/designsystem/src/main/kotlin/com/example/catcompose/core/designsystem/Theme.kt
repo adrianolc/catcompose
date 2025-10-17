@@ -5,11 +5,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 
 internal val LightColorScheme =
     lightColorScheme(
-        primary = Orange_500,
-        secondary = Orange_800,
+        primary = Orange500,
+        secondary = Orange800,
+        background = Color.Black,
     )
 
 internal val DarkColorScheme =
