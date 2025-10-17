@@ -3,7 +3,7 @@
     <style name="Theme.CatCompose" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
 
     <style name="Theme.CatCompose.SplashScreen" parent="Theme.SplashScreen">
-        <item name="android:windowBackground">@color/orange_500</item>
+        <item name="android:windowBackground">@android:color/black</item>
         <item name="postSplashScreenTheme">@style/Theme.CatCompose</item>
     </style>
 </resources>
