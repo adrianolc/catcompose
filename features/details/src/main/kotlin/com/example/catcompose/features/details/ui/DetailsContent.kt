@@ -1,5 +1,6 @@
 package com.example.catcompose.features.details.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,14 +26,18 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
+import com.example.catcompose.core.designsystem.CatTheme
+import com.example.catcompose.features.details.repo.Breed
 import com.example.catcompose.features.details.repo.Cat
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,6 +54,7 @@ internal fun CatDetailContent(
         modifier =
             modifier
                 .fillMaxSize()
+                .background(color = MaterialTheme.colorScheme.background)
                 .testTag("cat_details"),
     ) {
         Column(
@@ -67,6 +73,18 @@ internal fun CatDetailContent(
                 contentScale = ContentScale.FillBounds,
             )
 
+            Box(
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .background(
+                            Brush.verticalGradient(
+                                colors = listOf(Color.Transparent, Color(0x990C0C0C)),
+                                startY = 600f,
+                            ),
+                        ),
+            )
+
             Spacer(modifier = Modifier.height(16.dp))
 
             if (breed == null) return
@@ -78,6 +96,7 @@ internal fun CatDetailContent(
                     text = breed.name,
                     fontSize = 22.sp,
                     fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onBackground,
                 )
                 Text(
                     text = "Origin: ${breed.origin}",
@@ -87,17 +106,35 @@ internal fun CatDetailContent(
 
                 Spacer(modifier = Modifier.height(12.dp))
 
-                Text(text = "Temperament:", fontWeight = FontWeight.SemiBold)
-                Text(text = breed.temperament)
+                Text(
+                    text = "Temperament:",
+                    fontWeight = FontWeight.SemiBold,
+                    color = MaterialTheme.colorScheme.onBackground,
+                )
+                Text(
+                    text = breed.temperament,
+                    color = MaterialTheme.colorScheme.onBackground,
+                )
 
                 Spacer(modifier = Modifier.height(12.dp))
 
-                Text(text = "Description:", fontWeight = FontWeight.SemiBold)
-                Text(text = breed.description)
+                Text(
+                    text = "Description:",
+                    fontWeight = FontWeight.SemiBold,
+                    color = MaterialTheme.colorScheme.onBackground,
+                )
+                Text(
+                    text = breed.description,
+                    color = MaterialTheme.colorScheme.onBackground,
+                )
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                Text(text = "Characteristics:", fontWeight = FontWeight.SemiBold)
+                Text(
+                    text = "Characteristics:",
+                    fontWeight = FontWeight.SemiBold,
+                    color = MaterialTheme.colorScheme.onBackground,
+                )
                 BreedStatsRow("Adaptability", breed.adaptability)
                 BreedStatsRow("Affection", breed.affectionLevel)
                 BreedStatsRow("Child Friendly", breed.childFriendly)
@@ -146,11 +183,46 @@ internal fun BreedStatsRow(
         Text(
             text = "$label:",
             modifier = Modifier.width(120.dp),
+            color = MaterialTheme.colorScheme.onBackground,
         )
 
         repeat(5) { index ->
             val filled = index < value
-            Text(text = if (filled) "★" else "☆")
+            Text(
+                text = if (filled) "★" else "☆",
+                color = MaterialTheme.colorScheme.onBackground,
+            )
         }
+    }
+}
+
+@Preview
+@Composable
+private fun DetailContentPreview() {
+    val cat =
+        Cat(
+            id = "1",
+            url = "https://cdn2.thecatapi.com/images/PN0d8Zqg7.jpg",
+            breed =
+                Breed(
+                    id = "1",
+                    name = "Abyssinian",
+                    temperament = "Active, Energetic, Independent, Intelligent, Gentle",
+                    description = "The Abyssinian is easy to care for and active cat who is",
+                    origin = "Egypt",
+                    wikipediaUrl = "https://en.wikipedia.org/wiki/Abyssinian_(cat)",
+                    adaptability = 5,
+                    affectionLevel = 5,
+                    childFriendly = 3,
+                    grooming = 2,
+                    energyLevel = 5,
+                ),
+        )
+
+    CatTheme {
+        CatDetailContent(
+            modifier = Modifier,
+            cat = cat,
+        ) { }
     }
 }
