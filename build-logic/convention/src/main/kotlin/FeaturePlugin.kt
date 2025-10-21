@@ -16,6 +16,7 @@ class FeaturePlugin : Plugin<Project> {
                 "implementation"(libs.findLibrary("androidx.appcompat").get())
                 "implementation"(libs.findLibrary("androidx.lifecycle.viewModelCompose").get())
                 "implementation"(libs.findLibrary("material").get())
+                "implementation"(libs.findBundle("navigation3").get())
 
                 "implementation"(project(":core:designsystem"))
 
