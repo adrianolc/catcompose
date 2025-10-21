@@ -6,14 +6,14 @@ import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDe
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
-import com.example.catcompose.features.details.navigation.DetailsRouteNavKey
+import com.example.catcompose.features.details.navigation.DetailsRoute
 import com.example.catcompose.features.details.navigation.detailsRouteEntry
-import com.example.catcompose.features.list.navigation.ListRouteNavKey
+import com.example.catcompose.features.list.navigation.ListRoute
 import com.example.catcompose.features.list.navigation.listRouteEntry
 
 @Composable
 fun CatNavDisplay(modifier: Modifier = Modifier) {
-    val backStack = rememberNavBackStack(ListRouteNavKey)
+    val backStack = rememberNavBackStack(ListRoute)
 
     NavDisplay(
         modifier = modifier,
@@ -25,11 +25,11 @@ fun CatNavDisplay(modifier: Modifier = Modifier) {
             ),
         entryProvider = { key ->
             when (key) {
-                is ListRouteNavKey ->
+                is ListRoute ->
                     listRouteEntry(key) { catId ->
-                        backStack.add(DetailsRouteNavKey(catId))
+                        backStack.add(DetailsRoute(catId))
                     }
-                is DetailsRouteNavKey ->
+                is DetailsRoute ->
                     detailsRouteEntry(key) {
                         backStack.removeLastOrNull()
                     }

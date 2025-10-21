@@ -6,12 +6,12 @@ import com.example.catcompose.features.details.ui.DetailScreen
 import kotlinx.serialization.Serializable
 
 @Serializable
-public data class DetailsRouteNavKey(
+public data class DetailsRoute(
     val catId: String,
 ) : NavKey
 
 public fun detailsRouteEntry(
-    key: DetailsRouteNavKey,
+    key: DetailsRoute,
     onBackClick: () -> Unit,
 ): NavEntry<NavKey> =
     NavEntry(
