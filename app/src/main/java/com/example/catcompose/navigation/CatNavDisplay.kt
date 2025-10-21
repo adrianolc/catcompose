@@ -3,13 +3,14 @@ package com.example.catcompose.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
+import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import com.example.catcompose.features.details.navigation.DetailsRoute
-import com.example.catcompose.features.details.navigation.detailsRouteEntry
+import com.example.catcompose.features.details.navigation.DetailsRouteEntry
 import com.example.catcompose.features.list.navigation.ListRoute
-import com.example.catcompose.features.list.navigation.listRouteEntry
+import com.example.catcompose.features.list.navigation.ListRouteEntry
 
 @Composable
 fun CatNavDisplay(modifier: Modifier = Modifier) {
@@ -23,18 +24,18 @@ fun CatNavDisplay(modifier: Modifier = Modifier) {
                 rememberSaveableStateHolderNavEntryDecorator(),
                 rememberViewModelStoreNavEntryDecorator(),
             ),
-        entryProvider = { key ->
-            when (key) {
-                is ListRoute ->
-                    listRouteEntry(key) { catId ->
+        entryProvider =
+            entryProvider {
+                entry<ListRoute> {
+                    ListRouteEntry { catId ->
                         backStack.add(DetailsRoute(catId))
                     }
-                is DetailsRoute ->
-                    detailsRouteEntry(key) {
+                }
+                entry<DetailsRoute> { key ->
+                    DetailsRouteEntry(key) {
                         backStack.removeLastOrNull()
                     }
-                else -> throw RuntimeException("Unknown key")
-            }
-        },
+                }
+            },
     )
 }
