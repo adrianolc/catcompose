@@ -1,8 +1,10 @@
 package com.example.catcompose.features.details.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,6 +17,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.AssistChip
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -106,15 +109,17 @@ internal fun CatDetailContent(
 
                 Spacer(modifier = Modifier.height(12.dp))
 
-                Text(
-                    text = "Temperament:",
-                    fontWeight = FontWeight.SemiBold,
-                    color = MaterialTheme.colorScheme.onBackground,
-                )
-                Text(
-                    text = breed.temperament,
-                    color = MaterialTheme.colorScheme.onBackground,
-                )
+                FlowRow(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    breed.temperament.forEach {
+                        AssistChip(
+                            onClick = { /* no-op */ },
+                            label = { Text(text = it) },
+                        )
+                    }
+                }
 
                 Spacer(modifier = Modifier.height(12.dp))
 
@@ -207,7 +212,7 @@ private fun DetailContentPreview() {
                 Breed(
                     id = "1",
                     name = "Abyssinian",
-                    temperament = "Active, Energetic, Independent, Intelligent, Gentle",
+                    temperament = listOf("Active", "Energetic", "Independent", "Intelligent", "Gentle"),
                     description = "The Abyssinian is easy to care for and active cat who is",
                     origin = "Egypt",
                     wikipediaUrl = "https://en.wikipedia.org/wiki/Abyssinian_(cat)",

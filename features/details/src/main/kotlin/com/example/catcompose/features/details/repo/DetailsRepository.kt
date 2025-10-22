@@ -30,7 +30,7 @@ private fun BreedResponse.toBreed(): Breed =
     Breed(
         id = id,
         name = name,
-        temperament = temperament,
+        temperament = temperament.split(","),
         description = description,
         origin = origin,
         adaptability = adaptability,

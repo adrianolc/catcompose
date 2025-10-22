@@ -3,7 +3,7 @@ package com.example.catcompose.features.details.repo
 internal data class Breed(
     val id: String,
     val name: String,
-    val temperament: String,
+    val temperament: List<String>,
     val description: String,
     val origin: String,
     val adaptability: Int,
