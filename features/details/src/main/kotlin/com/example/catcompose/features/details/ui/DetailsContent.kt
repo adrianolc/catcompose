@@ -14,10 +14,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.AssistChip
+import androidx.compose.material3.AssistChipDefaults
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -62,31 +64,75 @@ internal fun CatDetailContent(
     ) {
         Column(
             modifier =
-                modifier
+                Modifier
                     .fillMaxSize()
                     .verticalScroll(state = rememberScrollState()),
         ) {
-            AsyncImage(
-                model = cat.url,
-                contentDescription = breed?.name,
-                modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .height(360.dp),
-                contentScale = ContentScale.FillBounds,
-            )
-
             Box(
                 modifier =
                     Modifier
-                        .fillMaxSize()
-                        .background(
-                            Brush.verticalGradient(
-                                colors = listOf(Color.Transparent, Color(0x990C0C0C)),
-                                startY = 600f,
+                        .fillMaxWidth()
+                        .height(540.dp),
+            ) {
+                AsyncImage(
+                    model = cat.url,
+                    contentDescription = breed?.name,
+                    modifier = Modifier.fillMaxWidth(),
+                    contentScale = ContentScale.Crop,
+                )
+
+                Box(
+                    modifier =
+                        Modifier
+                            .matchParentSize()
+                            .background(
+                                Brush.verticalGradient(
+                                    colors = listOf(Color.Transparent, Color.Black.copy(alpha = 0.8f)),
+                                    startY = 200f,
+                                ),
                             ),
-                        ),
-            )
+                )
+
+                Column(
+                    modifier =
+                        Modifier
+                            .align(Alignment.BottomStart)
+                            .padding(16.dp),
+                ) {
+                    Text(
+                        text = breed?.name ?: "",
+                        style = MaterialTheme.typography.headlineLarge,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onBackground,
+                    )
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    FlowRow(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    ) {
+                        breed?.temperament?.forEach {
+                            AssistChip(
+                                onClick = { /* no-op */ },
+                                label = {
+                                    Text(
+                                        text = it,
+                                        style = MaterialTheme.typography.bodySmall,
+                                    )
+                                },
+                                shape = RoundedCornerShape(percent = 50),
+                                colors =
+                                    AssistChipDefaults.assistChipColors(
+                                        containerColor = Color.White.copy(alpha = 0.15f),
+                                        labelColor = Color.White,
+                                    ),
+                                border = null,
+                            )
+                        }
+                    }
+                }
+            }
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -96,11 +142,13 @@ internal fun CatDetailContent(
                 modifier = Modifier.padding(horizontal = 16.dp),
             ) {
                 Text(
-                    text = breed.name,
-                    fontSize = 22.sp,
-                    fontWeight = FontWeight.Bold,
+                    text = breed.description,
+                    style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onBackground,
                 )
+
+                Spacer(modifier = Modifier.height(12.dp))
+
                 Text(
                     text = "Origin: ${breed.origin}",
                     fontSize = 16.sp,
@@ -108,32 +156,6 @@ internal fun CatDetailContent(
                 )
 
                 Spacer(modifier = Modifier.height(12.dp))
-
-                FlowRow(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                ) {
-                    breed.temperament.forEach {
-                        AssistChip(
-                            onClick = { /* no-op */ },
-                            label = { Text(text = it) },
-                        )
-                    }
-                }
-
-                Spacer(modifier = Modifier.height(12.dp))
-
-                Text(
-                    text = "Description:",
-                    fontWeight = FontWeight.SemiBold,
-                    color = MaterialTheme.colorScheme.onBackground,
-                )
-                Text(
-                    text = breed.description,
-                    color = MaterialTheme.colorScheme.onBackground,
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
 
                 Text(
                     text = "Characteristics:",
@@ -212,8 +234,15 @@ private fun DetailContentPreview() {
                 Breed(
                     id = "1",
                     name = "Abyssinian",
-                    temperament = listOf("Active", "Energetic", "Independent", "Intelligent", "Gentle"),
-                    description = "The Abyssinian is easy to care for and active cat who is",
+                    temperament =
+                        listOf(
+                            "Active",
+                            "Energetic",
+                            "Independent",
+                            "Intelligent",
+                            "Gentle",
+                        ),
+                    description = "The Abyssinian is easy to care for and active cat who is. The Abyssinian is easy to care for and active cat who is. The Abyssinian is easy to care for and active cat who is. The Abyssinian is easy to care for and active cat who is. The Abyssinian is easy to care for and active cat who is",
                     origin = "Egypt",
                     wikipediaUrl = "https://en.wikipedia.org/wiki/Abyssinian_(cat)",
                     adaptability = 5,
