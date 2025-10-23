@@ -7,21 +7,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.entryProvider
-import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
+import com.example.catcompose.core.navigation.Navigator
 import com.example.catcompose.features.details.navigation.DetailsRoute
 import com.example.catcompose.features.details.navigation.detailsRouteEntry
-import com.example.catcompose.features.list.navigation.ListRoute
 import com.example.catcompose.features.list.navigation.listRouteEntry
 
 @Composable
-fun CatNavDisplay(modifier: Modifier = Modifier) {
-    val backStack = rememberNavBackStack(ListRoute)
-
+fun CatNavDisplay(
+    modifier: Modifier = Modifier,
+    navigator: Navigator,
+) {
     NavDisplay(
         modifier = modifier,
-        backStack = backStack,
+        backStack = navigator.backStack,
+        onBack = { navigator.pop() },
         entryDecorators =
             listOf(
                 rememberSaveableStateHolderNavEntryDecorator(),
