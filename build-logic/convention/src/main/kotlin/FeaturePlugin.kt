@@ -19,6 +19,7 @@ class FeaturePlugin : Plugin<Project> {
                 "implementation"(libs.findBundle("navigation3").get())
 
                 "implementation"(project(":core:designsystem"))
+                "implementation"(project(":core:navigation"))
 
                 "testImplementation"(project(":core:test"))
                 "androidTestImplementation"(libs.findLibrary("androidx.junit").get())

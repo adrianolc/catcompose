@@ -4,7 +4,7 @@ import app.cash.turbine.test
 import com.example.catcompose.core.network.NetworkResult
 import com.example.catcompose.core.test.TestCoroutineRule
 import com.example.catcompose.features.details.model.Cat
-import com.example.catcompose.features.details.navigation.DetailsRoute
+import com.example.catcompose.features.details.navigation.DetailsNavKey
 import com.example.catcompose.features.details.repo.DetailsRepository
 import io.kotest.matchers.equals.shouldBeEqual
 import io.kotest.matchers.shouldBe
@@ -62,7 +62,7 @@ class DetailsViewModelTest {
 
     private fun createViewModel(): DetailsViewModel =
         DetailsViewModel(
-            detailsRoute = DetailsRoute(catId, "url", "name"),
+            detailsRoute = DetailsNavKey(catId, "url", "name"),
             detailsRepository = detailsRepository,
         )
 }

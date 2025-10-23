@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.catcompose.core.network.NetworkResult
 import com.example.catcompose.features.details.model.Cat
-import com.example.catcompose.features.details.navigation.DetailsRoute
+import com.example.catcompose.features.details.navigation.DetailsNavKey
 import com.example.catcompose.features.details.repo.DetailsRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 internal class DetailsViewModel
     @AssistedInject
     constructor(
-        @Assisted private val detailsRoute: DetailsRoute,
+        @Assisted private val detailsRoute: DetailsNavKey,
         private val detailsRepository: DetailsRepository,
     ) : ViewModel() {
         private val _viewState =
@@ -64,6 +64,6 @@ internal class DetailsViewModel
 
         @AssistedFactory
         interface Factory {
-            fun create(detailsRoute: DetailsRoute): DetailsViewModel
+            fun create(detailsRoute: DetailsNavKey): DetailsViewModel
         }
     }
