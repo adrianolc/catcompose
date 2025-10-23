@@ -33,7 +33,7 @@ private fun CatResponse.toCat(): Cat {
 
 private fun BreedResponse.toBreed(): Breed =
     Breed(
-        temperament = temperament.split(","),
+        temperament = temperament.split(",").shuffled().take(4),
         description = description,
         origin = origin,
         adaptability = adaptability,
