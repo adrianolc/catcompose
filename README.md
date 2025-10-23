@@ -7,9 +7,9 @@ It displays a list of cat breeds and detailed information for each one — servi
 
 ## 📸 Screenshots
 
-<img width="200" alt="Screenshot_20251017_115640" src="https://github.com/user-attachments/assets/9d072ae5-b231-44e6-974b-88e005436ee6" />
-<img width="200" alt="Screenshot_20251017_115701" src="https://github.com/user-attachments/assets/acc4f20a-0cf0-49e7-be35-93c69e6eecc9" />
-<img width="200" alt="Screenshot_20251017_115712" src="https://github.com/user-attachments/assets/1740a352-c825-4120-a9ae-bf6b59c91bc3" />
+<img width="200" alt="Screenshot_20251023_105633" src="https://github.com/user-attachments/assets/9a2539c8-b103-4f53-ba63-3e2ba90d53fe" />
+<img width="200" alt="Screenshot_20251023_110505" src="https://github.com/user-attachments/assets/9b920b99-84e4-4558-9cc5-f58c9cec41f7" />
+<img width="200" alt="Screenshot_20251023_110522" src="https://github.com/user-attachments/assets/62604e16-9a71-4a3a-9ace-a08c4843af1f" />
 
 ## 🐾 Features
 
