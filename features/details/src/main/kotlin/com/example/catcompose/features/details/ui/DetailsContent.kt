@@ -131,7 +131,7 @@ internal fun CatDetailContent(
                                 shape = RoundedCornerShape(percent = 50),
                                 colors =
                                     AssistChipDefaults.assistChipColors(
-                                        containerColor = Color.White.copy(alpha = 0.15f),
+                                        containerColor = MaterialTheme.colorScheme.background.copy(alpha = 0.5f),
                                         labelColor = Color.White,
                                     ),
                                 border = null,
