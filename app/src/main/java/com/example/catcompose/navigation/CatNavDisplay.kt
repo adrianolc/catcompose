@@ -1,5 +1,8 @@
 package com.example.catcompose.navigation
 
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.togetherWith
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
@@ -37,5 +40,17 @@ fun CatNavDisplay(modifier: Modifier = Modifier) {
                     }
                 }
             },
+        transitionSpec = {
+            slideInHorizontally(initialOffsetX = { it }) togetherWith
+                slideOutHorizontally(targetOffsetX = { -it })
+        },
+        popTransitionSpec = {
+            slideInHorizontally(initialOffsetX = { -it }) togetherWith
+                slideOutHorizontally(targetOffsetX = { it })
+        },
+        predictivePopTransitionSpec = {
+            slideInHorizontally(initialOffsetX = { -it }) togetherWith
+                slideOutHorizontally(targetOffsetX = { it })
+        },
     )
 }
