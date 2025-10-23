@@ -1,8 +1,6 @@
 package com.example.catcompose.features.details.model
 
 internal data class Breed(
-    val id: String,
-    val name: String,
     val temperament: List<String>,
     val description: String,
     val origin: String,

@@ -21,17 +21,18 @@ internal class DetailsRepository
             }
     }
 
-private fun CatResponse.toCat(): Cat =
-    Cat(
+private fun CatResponse.toCat(): Cat {
+    val breed = breeds.first()
+    return Cat(
         id = id,
-        url = url,
-        breed = breeds.first().toBreed(),
+        imageUrl = url,
+        name = breed.name,
+        breed = breed.toBreed(),
     )
+}
 
 private fun BreedResponse.toBreed(): Breed =
     Breed(
-        id = id,
-        name = name,
         temperament = temperament.split(","),
         description = description,
         origin = origin,

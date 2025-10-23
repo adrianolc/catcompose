@@ -9,4 +9,6 @@ internal data class CatResponse(
     val id: String,
     @SerialName("url")
     val url: String,
+    @SerialName("breeds")
+    val breeds: List<BreedResponse>,
 )

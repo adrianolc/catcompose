@@ -49,7 +49,7 @@ internal fun CatItem(
                 .clip(shape = RoundedCornerShape(size = 16.dp))
                 .fillMaxWidth()
                 .clickable {
-                    onCatClick(cat.id)
+                    onCatClick(cat)
                 }.testTag("cat_item"),
         model = cat.url,
         contentScale = ContentScale.FillWidth,
@@ -65,6 +65,7 @@ internal fun CatItemPreview() {
             Cat(
                 id = index.toString(),
                 url = "https://cdn2.thecatapi.com/images/$index.jpg",
+                name = "Cat $index",
             )
         }
 

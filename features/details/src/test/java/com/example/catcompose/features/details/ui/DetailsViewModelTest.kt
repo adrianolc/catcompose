@@ -33,7 +33,7 @@ class DetailsViewModelTest {
     @Test
     fun `should load cat details`() =
         runTest {
-            val cat = Cat(id = catId, url = "url", breed = null)
+            val cat = Cat(id = catId, imageUrl = "url", breed = null)
             coEvery { detailsRepository.getCat(catId) } returns NetworkResult.Success(cat)
 
             viewModel = createViewModel()

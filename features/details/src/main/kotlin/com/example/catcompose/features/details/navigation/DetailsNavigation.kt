@@ -10,6 +10,8 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class DetailsRoute(
     val catId: String,
+    val imageUrl: String,
+    val catName: String,
 ) : NavKey
 
 @Composable
@@ -20,7 +22,7 @@ public fun DetailsRouteEntry(
     val detailsViewModel: DetailsViewModel =
         hiltViewModel<DetailsViewModel, DetailsViewModel.Factory>(
             creationCallback = { factory ->
-                factory.create(key.catId)
+                factory.create(key)
             },
         )
 

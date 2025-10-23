@@ -30,8 +30,14 @@ fun CatNavDisplay(modifier: Modifier = Modifier) {
         entryProvider =
             entryProvider {
                 entry<ListRoute> {
-                    ListRouteEntry { catId ->
-                        backStack.add(DetailsRoute(catId))
+                    ListRouteEntry { cat ->
+                        backStack.add(
+                            DetailsRoute(
+                                catId = cat.id,
+                                imageUrl = cat.url,
+                                catName = cat.name,
+                            ),
+                        )
                     }
                 }
                 entry<DetailsRoute> { key ->

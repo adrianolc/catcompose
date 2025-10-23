@@ -13,6 +13,12 @@ internal class ListRepository
     ) {
         suspend fun getCats(): NetworkResult<List<Cat>> =
             asNetworkResult {
-                listService.getCats(10).map { Cat(it.id, it.url) }
+                listService.getCats(10).map { catResponse ->
+                    Cat(
+                        id = catResponse.id,
+                        url = catResponse.url,
+                        name = catResponse.breeds.first().name,
+                    )
+                }
             }
     }

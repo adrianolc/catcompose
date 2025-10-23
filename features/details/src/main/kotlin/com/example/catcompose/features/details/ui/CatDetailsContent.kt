@@ -55,7 +55,7 @@ internal fun CatDetailsContent(
     cat: Cat,
     onBackClick: () -> Unit,
 ) {
-    val breed = cat.breed
+    val breed = cat.breed ?: return
     val uriHandler = LocalUriHandler.current
 
     Box(
@@ -78,8 +78,8 @@ internal fun CatDetailsContent(
                         .height(560.dp),
             ) {
                 AsyncImage(
-                    model = cat.url,
-                    contentDescription = breed.name,
+                    model = cat.imageUrl,
+                    contentDescription = cat.name,
                     modifier = Modifier.fillMaxWidth(),
                     contentScale = ContentScale.Crop,
                 )
@@ -107,7 +107,7 @@ internal fun CatDetailsContent(
                             .padding(16.dp),
                 ) {
                     Text(
-                        text = breed.name,
+                        text = cat.name,
                         style = MaterialTheme.typography.displayMedium,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onBackground,
@@ -229,11 +229,10 @@ private fun DetailContentPreview() {
     val cat =
         Cat(
             id = "1",
-            url = "https://cdn2.thecatapi.com/images/PN0d8Zqg7.jpg",
+            imageUrl = "https://cdn2.thecatapi.com/images/PN0d8Zqg7.jpg",
+            name = "Abyssinian",
             breed =
                 Breed(
-                    id = "1",
-                    name = "Abyssinian",
                     temperament =
                         listOf(
                             "Active",

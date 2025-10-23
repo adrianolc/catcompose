@@ -13,18 +13,15 @@ internal fun DetailScreen(
 ) {
     val viewState by viewModel.viewState.collectAsStateWithLifecycle()
 
-    when (val state = viewState) {
-        is DetailsViewState.Error -> {
-            // no-op
-        }
-
-        is DetailsViewState.Loading -> DetailsLoading(modifier)
-
-        is DetailsViewState.Success ->
+    if (viewState.isLoading) {
+        DetailsLoading()
+    } else {
+        viewState.cat?.let { cat ->
             CatDetailsContent(
                 modifier = modifier,
-                cat = state.cat,
+                cat = cat,
                 onBackClick = onBackClick,
             )
+        }
     }
 }
