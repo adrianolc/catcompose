@@ -1,7 +1,7 @@
 package com.example.catcompose.features.details.navigation
 
-import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation3.runtime.EntryProviderScope
 import androidx.navigation3.runtime.NavKey
 import com.example.catcompose.features.details.ui.DetailScreen
 import com.example.catcompose.features.details.ui.DetailsViewModel
@@ -14,20 +14,18 @@ public data class DetailsRoute(
     val catName: String,
 ) : NavKey
 
-@Composable
-public fun DetailsRouteEntry(
-    key: DetailsRoute,
-    onBackClick: () -> Unit,
-) {
-    val detailsViewModel: DetailsViewModel =
-        hiltViewModel<DetailsViewModel, DetailsViewModel.Factory>(
-            creationCallback = { factory ->
-                factory.create(key)
-            },
-        )
+public fun EntryProviderScope<NavKey>.detailsRouteEntry(onBackClick: () -> Unit) {
+    entry<DetailsRoute> { key ->
+        val detailsViewModel: DetailsViewModel =
+            hiltViewModel<DetailsViewModel, DetailsViewModel.Factory>(
+                creationCallback = { factory ->
+                    factory.create(key)
+                },
+            )
 
-    DetailScreen(
-        onBackClick = onBackClick,
-        viewModel = detailsViewModel,
-    )
+        DetailScreen(
+            onBackClick = onBackClick,
+            viewModel = detailsViewModel,
+        )
+    }
 }

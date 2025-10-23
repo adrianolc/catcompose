@@ -11,9 +11,9 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import com.example.catcompose.features.details.navigation.DetailsRoute
-import com.example.catcompose.features.details.navigation.DetailsRouteEntry
+import com.example.catcompose.features.details.navigation.detailsRouteEntry
 import com.example.catcompose.features.list.navigation.ListRoute
-import com.example.catcompose.features.list.navigation.ListRouteEntry
+import com.example.catcompose.features.list.navigation.listRouteEntry
 
 @Composable
 fun CatNavDisplay(modifier: Modifier = Modifier) {
@@ -29,21 +29,17 @@ fun CatNavDisplay(modifier: Modifier = Modifier) {
             ),
         entryProvider =
             entryProvider {
-                entry<ListRoute> {
-                    ListRouteEntry { cat ->
-                        backStack.add(
-                            DetailsRoute(
-                                catId = cat.id,
-                                imageUrl = cat.url,
-                                catName = cat.name,
-                            ),
-                        )
-                    }
+                listRouteEntry { cat ->
+                    backStack.add(
+                        DetailsRoute(
+                            catId = cat.id,
+                            imageUrl = cat.url,
+                            catName = cat.name,
+                        ),
+                    )
                 }
-                entry<DetailsRoute> { key ->
-                    DetailsRouteEntry(key) {
-                        backStack.removeLastOrNull()
-                    }
+                detailsRouteEntry {
+                    backStack.removeLastOrNull()
                 }
             },
         transitionSpec = {
