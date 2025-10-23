@@ -12,6 +12,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.catcompose.core.designsystem.CatTheme
+import com.example.catcompose.core.navigation.EntryProvider
 import com.example.catcompose.core.navigation.Navigator
 import com.example.catcompose.navigation.CatNavDisplay
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,6 +22,9 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
     @Inject
     lateinit var navigator: Navigator
+
+    @Inject
+    lateinit var entryProviders: Set<@JvmSuppressWildcards EntryProvider>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
@@ -41,6 +45,7 @@ class MainActivity : ComponentActivity() {
                             testTagsAsResourceId = true
                         },
                     navigator = navigator,
+                    entryProviders = entryProviders,
                 )
             }
         }

@@ -9,15 +9,14 @@ import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDe
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
+import com.example.catcompose.core.navigation.EntryProvider
 import com.example.catcompose.core.navigation.Navigator
-import com.example.catcompose.features.details.navigation.DetailsRoute
-import com.example.catcompose.features.details.navigation.detailsRouteEntry
-import com.example.catcompose.features.list.navigation.listRouteEntry
 
 @Composable
 fun CatNavDisplay(
     modifier: Modifier = Modifier,
     navigator: Navigator,
+    entryProviders: Set<EntryProvider>,
 ) {
     NavDisplay(
         modifier = modifier,
@@ -30,18 +29,7 @@ fun CatNavDisplay(
             ),
         entryProvider =
             entryProvider {
-                listRouteEntry { cat ->
-                    backStack.add(
-                        DetailsRoute(
-                            catId = cat.id,
-                            imageUrl = cat.url,
-                            catName = cat.name,
-                        ),
-                    )
-                }
-                detailsRouteEntry {
-                    backStack.removeLastOrNull()
-                }
+                entryProviders.forEach { it() }
             },
         transitionSpec = {
             slideInHorizontally(initialOffsetX = { it }) togetherWith
