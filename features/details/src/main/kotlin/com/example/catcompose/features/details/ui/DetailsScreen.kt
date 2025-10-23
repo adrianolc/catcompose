@@ -21,7 +21,7 @@ internal fun DetailScreen(
         is DetailsViewState.Loading -> DetailsLoading(modifier)
 
         is DetailsViewState.Success ->
-            CatDetailContent(
+            CatDetailsContent(
                 modifier = modifier,
                 cat = state.cat,
                 onBackClick = onBackClick,

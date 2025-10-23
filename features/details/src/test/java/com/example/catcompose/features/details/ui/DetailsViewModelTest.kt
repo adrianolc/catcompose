@@ -3,7 +3,7 @@ package com.example.catcompose.features.details.ui
 import app.cash.turbine.test
 import com.example.catcompose.core.network.NetworkResult
 import com.example.catcompose.core.test.TestCoroutineRule
-import com.example.catcompose.features.details.repo.Cat
+import com.example.catcompose.features.details.model.Cat
 import com.example.catcompose.features.details.repo.DetailsRepository
 import io.kotest.matchers.shouldBe
 import io.mockk.coEvery

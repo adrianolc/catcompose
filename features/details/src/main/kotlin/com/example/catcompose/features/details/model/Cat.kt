@@ -1,4 +1,4 @@
-package com.example.catcompose.features.details.repo
+package com.example.catcompose.features.details.model
 
 internal data class Cat(
     val id: String,

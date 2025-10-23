@@ -1,6 +1,6 @@
 package com.example.catcompose.features.details.ui
 
-import com.example.catcompose.features.details.repo.Cat
+import com.example.catcompose.features.details.model.Cat
 
 internal sealed interface DetailsViewState {
     object Loading : DetailsViewState

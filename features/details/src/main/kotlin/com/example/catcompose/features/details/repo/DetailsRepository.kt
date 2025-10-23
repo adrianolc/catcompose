@@ -5,6 +5,8 @@ import com.example.catcompose.core.network.asNetworkResult
 import com.example.catcompose.features.details.api.BreedResponse
 import com.example.catcompose.features.details.api.CatResponse
 import com.example.catcompose.features.details.api.DetailsService
+import com.example.catcompose.features.details.model.Breed
+import com.example.catcompose.features.details.model.Cat
 import javax.inject.Inject
 import kotlin.String
 

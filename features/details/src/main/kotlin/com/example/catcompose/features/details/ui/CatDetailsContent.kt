@@ -45,12 +45,12 @@ import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.example.catcompose.core.designsystem.CatTheme
 import com.example.catcompose.features.details.R
-import com.example.catcompose.features.details.repo.Breed
-import com.example.catcompose.features.details.repo.Cat
+import com.example.catcompose.features.details.model.Breed
+import com.example.catcompose.features.details.model.Cat
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun CatDetailContent(
+internal fun CatDetailsContent(
     modifier: Modifier,
     cat: Cat,
     onBackClick: () -> Unit,
@@ -254,7 +254,7 @@ private fun DetailContentPreview() {
         )
 
     CatTheme {
-        CatDetailContent(
+        CatDetailsContent(
             modifier = Modifier,
             cat = cat,
         ) { }
