@@ -62,9 +62,10 @@ dependencies {
 
     // modules dependencies
     implementation(projects.core.network)
+    implementation(projects.core.designsystem)
+    implementation(projects.core.navigation)
     implementation(projects.features.list)
     implementation(projects.features.details)
-    implementation(projects.core.designsystem)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
