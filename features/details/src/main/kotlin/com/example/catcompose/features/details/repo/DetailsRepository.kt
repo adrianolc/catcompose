@@ -23,7 +23,7 @@ private fun CatResponse.toCat(): Cat =
     Cat(
         id = id,
         url = url,
-        breed = breeds.firstOrNull()?.toBreed(),
+        breed = breeds.first().toBreed(),
     )
 
 private fun BreedResponse.toBreed(): Breed =

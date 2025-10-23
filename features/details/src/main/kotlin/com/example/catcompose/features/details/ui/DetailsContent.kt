@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
@@ -36,12 +37,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.example.catcompose.core.designsystem.CatTheme
+import com.example.catcompose.features.details.R
 import com.example.catcompose.features.details.repo.Breed
 import com.example.catcompose.features.details.repo.Cat
 
@@ -72,11 +75,11 @@ internal fun CatDetailContent(
                 modifier =
                     Modifier
                         .fillMaxWidth()
-                        .height(540.dp),
+                        .height(560.dp),
             ) {
                 AsyncImage(
                     model = cat.url,
-                    contentDescription = breed?.name,
+                    contentDescription = breed.name,
                     modifier = Modifier.fillMaxWidth(),
                     contentScale = ContentScale.Crop,
                 )
@@ -87,7 +90,11 @@ internal fun CatDetailContent(
                             .matchParentSize()
                             .background(
                                 Brush.verticalGradient(
-                                    colors = listOf(Color.Transparent, Color.Black.copy(alpha = 0.8f)),
+                                    colors =
+                                        listOf(
+                                            Color.Transparent,
+                                            Color.Black.copy(alpha = 0.8f),
+                                        ),
                                     startY = 200f,
                                 ),
                             ),
@@ -100,8 +107,8 @@ internal fun CatDetailContent(
                             .padding(16.dp),
                 ) {
                     Text(
-                        text = breed?.name ?: "",
-                        style = MaterialTheme.typography.headlineLarge,
+                        text = breed.name,
+                        style = MaterialTheme.typography.displayMedium,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onBackground,
                     )
@@ -112,7 +119,7 @@ internal fun CatDetailContent(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(4.dp),
                     ) {
-                        breed?.temperament?.forEach {
+                        breed.temperament.forEach {
                             AssistChip(
                                 onClick = { /* no-op */ },
                                 label = {
@@ -136,8 +143,6 @@ internal fun CatDetailContent(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            if (breed == null) return
-
             Column(
                 modifier = Modifier.padding(horizontal = 16.dp),
             ) {
@@ -154,28 +159,6 @@ internal fun CatDetailContent(
                     fontSize = 16.sp,
                     color = MaterialTheme.colorScheme.secondary,
                 )
-
-                Spacer(modifier = Modifier.height(12.dp))
-
-                Text(
-                    text = "Characteristics:",
-                    fontWeight = FontWeight.SemiBold,
-                    color = MaterialTheme.colorScheme.onBackground,
-                )
-                BreedStatsRow("Adaptability", breed.adaptability)
-                BreedStatsRow("Affection", breed.affectionLevel)
-                BreedStatsRow("Child Friendly", breed.childFriendly)
-                BreedStatsRow("Grooming", breed.grooming)
-                BreedStatsRow("Energy", breed.energyLevel)
-
-                Spacer(modifier = Modifier.height(20.dp))
-
-                Button(
-                    onClick = { uriHandler.openUri(breed.wikipediaUrl) },
-                    modifier = Modifier.align(Alignment.CenterHorizontally),
-                ) {
-                    Text("Open Wikipedia")
-                }
             }
         }
 
@@ -196,6 +179,23 @@ internal fun CatDetailContent(
                     navigationIconContentColor = MaterialTheme.colorScheme.onSurface,
                 ),
         )
+
+        Button(
+            onClick = { uriHandler.openUri(breed.wikipediaUrl) },
+            modifier =
+                Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(16.dp)
+                    .height(80.dp)
+                    .width(220.dp),
+        ) {
+            Icon(
+                modifier = Modifier.size(42.dp),
+                painter = painterResource(R.drawable.ic_wikipedia),
+                contentDescription = "Wikipedia",
+                tint = Color.Black,
+            )
+        }
     }
 }
 
