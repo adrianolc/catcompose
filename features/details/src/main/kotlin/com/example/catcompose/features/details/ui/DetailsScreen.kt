@@ -1,9 +1,52 @@
 package com.example.catcompose.features.details.ui
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.AssistChip
+import androidx.compose.material3.AssistChipDefaults
+import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import coil3.compose.AsyncImage
+import com.example.catcompose.core.designsystem.CatTheme
+import com.example.catcompose.features.details.R
+import com.example.catcompose.features.details.model.Breed
+import com.example.catcompose.features.details.model.Cat
 
 @Composable
 internal fun DetailScreen(
@@ -13,15 +56,191 @@ internal fun DetailScreen(
 ) {
     val viewState by viewModel.viewState.collectAsStateWithLifecycle()
 
-    if (viewState.isLoading) {
-        DetailsLoading()
-    } else {
-        viewState.cat?.let { cat ->
-            CatDetailsContent(
-                modifier = modifier,
-                cat = cat,
-                onBackClick = onBackClick,
+    DetailsScreenContent(
+        modifier = modifier,
+        cat = viewState.cat,
+        isLoading = viewState.isLoading,
+        onBackClick = onBackClick,
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun DetailsScreenContent(
+    modifier: Modifier = Modifier,
+    cat: Cat,
+    isLoading: Boolean,
+    onBackClick: () -> Unit,
+) {
+    Box(
+        modifier =
+            modifier
+                .fillMaxSize()
+                .background(color = MaterialTheme.colorScheme.background)
+                .testTag("cat_details"),
+    ) {
+        Column(
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .verticalScroll(state = rememberScrollState()),
+        ) {
+            Box(
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .height(560.dp),
+            ) {
+                AsyncImage(
+                    model = cat.imageUrl,
+                    contentDescription = cat.name,
+                    modifier = Modifier.fillMaxWidth(),
+                    contentScale = ContentScale.Crop,
+                )
+
+                Box(
+                    modifier =
+                        Modifier
+                            .matchParentSize()
+                            .background(
+                                Brush.verticalGradient(
+                                    colors =
+                                        listOf(
+                                            Color.Transparent,
+                                            Color.Black.copy(alpha = 0.8f),
+                                        ),
+                                    startY = 200f,
+                                ),
+                            ),
+                )
+
+                Column(
+                    modifier =
+                        Modifier
+                            .align(Alignment.BottomStart)
+                            .padding(16.dp),
+                ) {
+                    Text(
+                        text = cat.name,
+                        style = MaterialTheme.typography.displayMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onBackground,
+                    )
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    FlowRow(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    ) {
+                        cat.breed?.temperament?.forEach {
+                            AssistChip(
+                                onClick = { /* no-op */ },
+                                label = {
+                                    Text(
+                                        text = it,
+                                        style = MaterialTheme.typography.bodySmall,
+                                    )
+                                },
+                                shape = RoundedCornerShape(percent = 50),
+                                colors =
+                                    AssistChipDefaults.assistChipColors(
+                                        containerColor =
+                                            MaterialTheme.colorScheme.background.copy(
+                                                alpha = 0.5f,
+                                            ),
+                                        labelColor = Color.White,
+                                    ),
+                                border = null,
+                            )
+                        }
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            if (isLoading) {
+                DetailsLoading()
+            } else {
+                BreedContent(
+                    breed = cat.breed,
+                )
+            }
+        }
+
+        TopAppBar(
+            title = {},
+            modifier = Modifier.statusBarsPadding(),
+            navigationIcon = {
+                IconButton(onClick = onBackClick) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Default.ArrowBack,
+                        contentDescription = "Back",
+                    )
+                }
+            },
+            colors =
+                TopAppBarDefaults.topAppBarColors(
+                    containerColor = Color.Transparent,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onSurface,
+                ),
+        )
+
+        if (cat.breed == null) return@Box
+
+        val uriHandler = LocalUriHandler.current
+
+        Button(
+            onClick = { uriHandler.openUri(uri = cat.breed.wikipediaUrl) },
+            modifier =
+                Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(16.dp)
+                    .height(80.dp)
+                    .width(220.dp),
+        ) {
+            Icon(
+                modifier = Modifier.size(42.dp),
+                painter = painterResource(R.drawable.ic_wikipedia),
+                contentDescription = "Wikipedia",
+                tint = Color.Black,
             )
         }
+    }
+}
+
+@Preview
+@Composable
+private fun DetailScreenPreview() {
+    val cat =
+        Cat(
+            id = "1",
+            imageUrl = "https://cdn2.thecatapi.",
+            name = "Abyssinian",
+            breed =
+                Breed(
+                    temperament =
+                        listOf(
+                            "Active",
+                            "Energetic",
+                            "Active",
+                            "Energetic",
+                        ),
+                    description = "The Abyssinian is easy to care for and active cat who is. The Abyssinian is easy to care for and active cat who is. The Abyssinian is easy to care for and active cat who is. The Abyssinian is easy to care for and active cat who is. The Abyssinian is easy to care for and active cat who is",
+                    origin = "Egypt",
+                    wikipediaUrl = "https://en.wikipedia.org/wiki/Abyssinian_(cat)",
+                    adaptability = 5,
+                    affectionLevel = 5,
+                    childFriendly = 3,
+                    grooming = 2,
+                    energyLevel = 5,
+                ),
+        )
+    CatTheme {
+        DetailsScreenContent(
+            cat = cat,
+            isLoading = false,
+        ) { }
     }
 }
