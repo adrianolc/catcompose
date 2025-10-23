@@ -16,7 +16,7 @@ internal class ListRepository
                 listService.getCats(10).map { catResponse ->
                     Cat(
                         id = catResponse.id,
-                        url = catResponse.url,
+                        imageUrl = catResponse.url,
                         name = catResponse.breeds.first().name,
                     )
                 }

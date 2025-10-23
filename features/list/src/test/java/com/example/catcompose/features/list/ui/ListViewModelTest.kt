@@ -35,7 +35,7 @@ class ListViewModelTest {
                 listOf(
                     Cat(
                         id = "1",
-                        url = "url",
+                        imageUrl = "url",
                         name = "miau",
                     ),
                 )
