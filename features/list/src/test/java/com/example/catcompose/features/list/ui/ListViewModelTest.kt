@@ -31,7 +31,14 @@ class ListViewModelTest {
     @Test
     fun `should load cats`() =
         runTest {
-            val cats = listOf(Cat("1", "url"))
+            val cats =
+                listOf(
+                    Cat(
+                        id = "1",
+                        url = "url",
+                        name = "miau",
+                    ),
+                )
             coEvery { listRepository.getCats() } returns NetworkResult.Success(cats)
 
             viewModel = ListViewModel(listRepository)
