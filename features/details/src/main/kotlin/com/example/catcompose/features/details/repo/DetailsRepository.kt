@@ -5,6 +5,8 @@ import com.example.catcompose.core.network.asNetworkResult
 import com.example.catcompose.features.details.api.BreedResponse
 import com.example.catcompose.features.details.api.CatResponse
 import com.example.catcompose.features.details.api.DetailsService
+import com.example.catcompose.features.details.model.Breed
+import com.example.catcompose.features.details.model.Cat
 import javax.inject.Inject
 import kotlin.String
 
@@ -19,18 +21,19 @@ internal class DetailsRepository
             }
     }
 
-private fun CatResponse.toCat(): Cat =
-    Cat(
+private fun CatResponse.toCat(): Cat {
+    val breed = breeds.first()
+    return Cat(
         id = id,
-        url = url,
-        breed = breeds.firstOrNull()?.toBreed(),
+        imageUrl = url,
+        name = breed.name,
+        breed = breed.toBreed(),
     )
+}
 
 private fun BreedResponse.toBreed(): Breed =
     Breed(
-        id = id,
-        name = name,
-        temperament = temperament,
+        temperament = temperament.split(",").shuffled().take(4),
         description = description,
         origin = origin,
         adaptability = adaptability,

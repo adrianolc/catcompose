@@ -18,7 +18,6 @@ class ComposePlugin : Plugin<Project> {
                 "implementation"(libs.findLibrary("androidx-compose-foundation").get())
                 "implementation"(libs.findLibrary("androidx-lifecycle-runtimeCompose").get())
                 "implementation"(libs.findLibrary("androidx-hilt-navigation-compose").get())
-                "implementation"(libs.findLibrary("androidx-navigation-compose").get())
 
                 "implementation"(libs.findLibrary("androidx-compose-ui-tootling-preview").get())
                 "debugImplementation"(libs.findLibrary("androidx-compose-ui-tootling").get())

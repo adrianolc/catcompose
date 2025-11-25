@@ -4,16 +4,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.valentinilk.shimmer.shimmer
@@ -22,57 +19,61 @@ import com.valentinilk.shimmer.shimmer
 internal fun DetailsLoading(modifier: Modifier = Modifier) {
     Column(
         modifier =
-            modifier
+            Modifier
                 .shimmer()
-                .background(color = MaterialTheme.colorScheme.background)
-                .fillMaxSize(),
+                .padding(horizontal = 16.dp)
+                .fillMaxWidth(),
     ) {
         Box(
-            modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .height(360.dp)
-                    .background(Color.LightGray),
+            modifier
+                .height(18.dp)
+                .background(Color.LightGray)
+                .fillMaxWidth(),
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(4.dp))
 
-        Column(
-            modifier = Modifier.padding(horizontal = 16.dp),
-        ) {
-            Box(
-                modifier
-                    .height(24.dp)
-                    .fillMaxWidth(),
-            )
+        Box(
+            modifier
+                .height(18.dp)
+                .background(Color.LightGray)
+                .fillMaxWidth(),
+        )
 
-            Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(4.dp))
 
-            Text(text = "Temperament:", fontWeight = FontWeight.SemiBold)
-            Box(
-                modifier
-                    .height(34.dp)
-                    .background(Color.LightGray),
-            )
+        Box(
+            modifier
+                .height(18.dp)
+                .background(Color.LightGray)
+                .fillMaxWidth(),
+        )
 
-            Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(4.dp))
 
-            Text(text = "Description:", fontWeight = FontWeight.SemiBold)
-            Box(
-                modifier
-                    .height(34.dp)
-                    .background(Color.LightGray),
-            )
+        Box(
+            modifier
+                .height(18.dp)
+                .background(Color.LightGray)
+                .fillMaxWidth(),
+        )
 
-            Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(4.dp))
 
-            Text(text = "Characteristics:", fontWeight = FontWeight.SemiBold)
-            BreedStatsRow("Adaptability", 5)
-            BreedStatsRow("Affection", 4)
-            BreedStatsRow("Child Friendly", 3)
-            BreedStatsRow("Grooming", 2)
-            BreedStatsRow("Energy", 1)
-        }
+        Box(
+            modifier
+                .height(18.dp)
+                .background(Color.LightGray)
+                .fillMaxWidth(),
+        )
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        Box(
+            modifier
+                .size(height = 24.dp, width = 120.dp)
+                .background(Color.LightGray),
+        )
     }
 }
 

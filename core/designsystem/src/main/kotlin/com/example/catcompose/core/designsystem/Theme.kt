@@ -11,9 +11,9 @@ internal val LightColorScheme =
         primary = Orange500,
         onPrimary = Color.White,
         secondary = Orange800,
-        background = Color.Black,
+        background = DeepSpace,
         onBackground = Color.White,
-        surface = Color.Black,
+        surface = DeepSpace,
         onSurface = Color.White,
     )
 
