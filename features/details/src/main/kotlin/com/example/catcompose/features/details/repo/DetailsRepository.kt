@@ -1,7 +1,6 @@
 package com.example.catcompose.features.details.repo
 
-import com.example.catcompose.core.network.NetworkResult
-import com.example.catcompose.core.network.asNetworkResult
+import com.example.catcompose.core.network.asResult
 import com.example.catcompose.features.details.api.BreedResponse
 import com.example.catcompose.features.details.api.CatResponse
 import com.example.catcompose.features.details.api.DetailsService
@@ -15,8 +14,8 @@ internal class DetailsRepository
     constructor(
         private val detailsService: DetailsService,
     ) {
-        suspend fun getCat(id: String): NetworkResult<Cat> =
-            asNetworkResult {
+        suspend fun getCat(id: String): Result<Cat> =
+            asResult {
                 detailsService.getCat(id).toCat()
             }
     }

@@ -2,7 +2,6 @@ package com.example.catcompose.features.list.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.catcompose.core.network.NetworkResult
 import com.example.catcompose.features.list.repo.ListRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,13 +21,15 @@ internal class ListViewModel
 
         init {
             viewModelScope.launch {
-                _state.value =
-                    when (val result = listRepository.getCats()) {
-                        is NetworkResult.Error ->
+                listRepository
+                    .getCats()
+                    .onSuccess { cats ->
+                        _state.value = ListViewState.Success(cats = cats)
+                    }.onFailure { exception ->
+                        _state.value =
                             ListViewState.Error(
-                                message = result.exception.message ?: "Unknown error",
+                                message = exception.message ?: "Unknown error",
                             )
-                        is NetworkResult.Success -> ListViewState.Success(cats = result.data)
                     }
             }
         }

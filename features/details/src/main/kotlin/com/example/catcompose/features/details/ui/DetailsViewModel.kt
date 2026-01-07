@@ -2,7 +2,6 @@ package com.example.catcompose.features.details.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.catcompose.core.network.NetworkResult
 import com.example.catcompose.features.details.model.Cat
 import com.example.catcompose.features.details.navigation.DetailsNavKey
 import com.example.catcompose.features.details.repo.DetailsRepository
@@ -42,23 +41,23 @@ internal class DetailsViewModel
 
         init {
             viewModelScope.launch {
-                when (val result = detailsRepository.getCat(detailsRoute.catId)) {
-                    is NetworkResult.Success ->
+                detailsRepository
+                    .getCat(detailsRoute.catId)
+                    .onSuccess { cat ->
                         _viewState.update {
                             it.copy(
-                                cat = result.data,
+                                cat = cat,
                                 isLoading = false,
                             )
                         }
-
-                    is NetworkResult.Error ->
+                    }.onFailure { exception ->
                         _viewState.update {
                             it.copy(
-                                error = result.exception.message,
+                                error = exception.message,
                                 isLoading = false,
                             )
                         }
-                }
+                    }
             }
         }
 

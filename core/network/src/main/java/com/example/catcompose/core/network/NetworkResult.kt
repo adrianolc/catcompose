@@ -6,26 +6,16 @@ import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
 
-public sealed interface NetworkResult<out T> {
-    public data class Success<out T>(
-        val data: T,
-    ) : NetworkResult<T>
-
-    public data class Error(
-        val exception: Throwable,
-    ) : NetworkResult<Nothing>
-}
-
 @ExperimentalContracts
-public inline fun <T> asNetworkResult(action: () -> T): NetworkResult<T> {
+public inline fun <T> asResult(action: () -> T): Result<T> {
     contract {
         callsInPlace(action, InvocationKind.EXACTLY_ONCE)
     }
     return try {
-        NetworkResult.Success(data = action())
+        Result.success(value = action())
     } catch (e: HttpException) {
-        NetworkResult.Error(e)
+        Result.failure(e)
     } catch (e: IOException) {
-        NetworkResult.Error(e)
+        Result.failure(e)
     }
 }

@@ -1,7 +1,6 @@
 package com.example.catcompose.features.details.ui
 
 import app.cash.turbine.test
-import com.example.catcompose.core.network.NetworkResult
 import com.example.catcompose.core.test.TestCoroutineRule
 import com.example.catcompose.features.details.model.Cat
 import com.example.catcompose.features.details.navigation.DetailsNavKey
@@ -25,6 +24,8 @@ class DetailsViewModelTest {
     @Test
     fun `should show loading state`() =
         runTest {
+            val cat = Cat(id = catId, imageUrl = "url", name = "cat", breed = null)
+            coEvery { detailsRepository.getCat(catId) } returns Result.success(cat)
             viewModel = createViewModel()
 
             viewModel.viewState.test {
@@ -36,7 +37,7 @@ class DetailsViewModelTest {
     fun `should load cat details`() =
         runTest {
             val cat = Cat(id = catId, imageUrl = "url", name = "cat", breed = null)
-            coEvery { detailsRepository.getCat(catId) } returns NetworkResult.Success(cat)
+            coEvery { detailsRepository.getCat(catId) } returns Result.success(cat)
 
             viewModel = createViewModel()
 
@@ -50,7 +51,7 @@ class DetailsViewModelTest {
     fun `should show error state`() =
         runTest {
             val expectedError = Exception("Error")
-            coEvery { detailsRepository.getCat(catId) } returns NetworkResult.Error(expectedError)
+            coEvery { detailsRepository.getCat(catId) } returns Result.failure(expectedError)
 
             viewModel = createViewModel()
 

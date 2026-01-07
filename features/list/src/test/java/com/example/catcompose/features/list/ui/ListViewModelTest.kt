@@ -1,7 +1,6 @@
 package com.example.catcompose.features.list.ui
 
 import app.cash.turbine.test
-import com.example.catcompose.core.network.NetworkResult
 import com.example.catcompose.core.test.TestCoroutineRule
 import com.example.catcompose.features.list.repo.ListRepository
 import io.kotest.matchers.shouldBe
@@ -21,6 +20,16 @@ class ListViewModelTest {
     @Test
     fun `should show loading state`() =
         runTest {
+            val cats =
+                listOf(
+                    Cat(
+                        id = "1",
+                        imageUrl = "url",
+                        name = "miau",
+                    ),
+                )
+            coEvery { listRepository.getCats() } returns Result.success(cats)
+
             viewModel = ListViewModel(listRepository)
 
             viewModel.viewState.test {
@@ -39,7 +48,7 @@ class ListViewModelTest {
                         name = "miau",
                     ),
                 )
-            coEvery { listRepository.getCats() } returns NetworkResult.Success(cats)
+            coEvery { listRepository.getCats() } returns Result.success(cats)
 
             viewModel = ListViewModel(listRepository)
 
@@ -52,7 +61,7 @@ class ListViewModelTest {
     @Test
     fun `should show error state`() =
         runTest {
-            coEvery { listRepository.getCats() } returns NetworkResult.Error(Exception("Error"))
+            coEvery { listRepository.getCats() } returns Result.failure(Exception("Error"))
 
             viewModel = ListViewModel(listRepository)
 
