@@ -6,7 +6,6 @@ import com.example.catcompose.features.list.repo.ListRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,17 +15,17 @@ internal class ListViewModel
     constructor(
         private val listRepository: ListRepository,
     ) : ViewModel() {
-        private val _state = MutableStateFlow<ListViewState>(value = ListViewState.Loading)
-        val viewState: StateFlow<ListViewState> = _state.asStateFlow()
+        val viewState: StateFlow<ListViewState>
+            field: MutableStateFlow<ListViewState> = MutableStateFlow<ListViewState>(value = ListViewState.Loading)
 
         init {
             viewModelScope.launch {
                 listRepository
                     .getCats()
                     .onSuccess { cats ->
-                        _state.value = ListViewState.Success(cats = cats)
+                        viewState.value = ListViewState.Success(cats = cats)
                     }.onFailure { exception ->
-                        _state.value =
+                        viewState.value =
                             ListViewState.Error(
                                 message = exception.message ?: "Unknown error",
                             )

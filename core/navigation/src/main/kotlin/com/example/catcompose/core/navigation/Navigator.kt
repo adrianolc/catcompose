@@ -10,14 +10,14 @@ public typealias EntryProvider = EntryProviderScope<NavKey>.() -> Unit
 public class Navigator(
     startDestination: NavKey,
 ) {
-    private val _backStack: SnapshotStateList<NavKey> = mutableStateListOf(startDestination)
-    public val backStack: List<NavKey> = _backStack
+    public val backStack: List<NavKey>
+        field: SnapshotStateList<NavKey> = mutableStateListOf(startDestination)
 
     public fun navigate(destination: NavKey) {
-        _backStack.add(destination)
+        backStack.add(destination)
     }
 
     public fun pop() {
-        _backStack.removeLastOrNull()
+        backStack.removeLastOrNull()
     }
 }

@@ -39,7 +39,10 @@ class AndroidApplicationPlugin : Plugin<Project> {
                 }
 
                 extensions.configure<KotlinAndroidProjectExtension> {
-                    compilerOptions.jvmTarget.set(JvmTarget.JVM_17)
+                    compilerOptions {
+                        jvmTarget.set(JvmTarget.JVM_17)
+                        freeCompilerArgs.add("-XXLanguage:+ExplicitBackingFields")
+                    }
                 }
             }
         }

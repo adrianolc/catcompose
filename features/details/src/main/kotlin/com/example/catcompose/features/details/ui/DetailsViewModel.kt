@@ -11,7 +11,6 @@ import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -22,7 +21,8 @@ internal class DetailsViewModel
         @Assisted private val detailsRoute: DetailsNavKey,
         private val detailsRepository: DetailsRepository,
     ) : ViewModel() {
-        private val _viewState =
+        val viewState: StateFlow<DetailsViewState>
+            field: MutableStateFlow<DetailsViewState> =
             MutableStateFlow(
                 value =
                     DetailsViewState(
@@ -37,21 +37,19 @@ internal class DetailsViewModel
                     ),
             )
 
-        val viewState: StateFlow<DetailsViewState> = _viewState.asStateFlow()
-
         init {
             viewModelScope.launch {
                 detailsRepository
                     .getCat(detailsRoute.catId)
                     .onSuccess { cat ->
-                        _viewState.update {
+                        viewState.update {
                             it.copy(
                                 cat = cat,
                                 isLoading = false,
                             )
                         }
                     }.onFailure { exception ->
-                        _viewState.update {
+                        viewState.update {
                             it.copy(
                                 error = exception.message,
                                 isLoading = false,

@@ -39,10 +39,14 @@ class AndroidLibraryPlugin : Plugin<Project> {
                 }
 
                 extensions.configure<KotlinAndroidProjectExtension> {
-                    compilerOptions.jvmTarget.set(JvmTarget.JVM_17)
-                    compilerOptions.optIn.add("kotlin.contracts.ExperimentalContracts")
-                    compilerOptions.optIn.add("androidx.compose.material3.ExperimentalMaterial3Api")
-                    compilerOptions.optIn.add("androidx.compose.material3.ExperimentalMaterial3ExpressiveApi")
+                    compilerOptions {
+                        jvmTarget.set(JvmTarget.JVM_17)
+                        optIn.add("kotlin.contracts.ExperimentalContracts")
+                        optIn.add("androidx.compose.material3.ExperimentalMaterial3Api")
+                        optIn.add("androidx.compose.material3.ExperimentalMaterial3ExpressiveApi")
+                        freeCompilerArgs.add("-XXLanguage:+ExplicitBackingFields")
+                    }
+
                     explicitApi()
                 }
             }
