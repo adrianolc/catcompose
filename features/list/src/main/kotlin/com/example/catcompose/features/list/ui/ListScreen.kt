@@ -50,14 +50,17 @@ internal fun ListScreen(
                 // no-op
             }
 
-            is ListViewState.Loading -> ListLoading(modifier = modifierWithPadding)
+            is ListViewState.Loading -> {
+                ListLoading(modifier = modifierWithPadding)
+            }
 
-            is ListViewState.Success ->
+            is ListViewState.Success -> {
                 ListContent(
                     modifier = modifierWithPadding,
                     cats = currentViewState.cats,
                     onCatClick = onCatClick,
                 )
+            }
         }
     }
 }
