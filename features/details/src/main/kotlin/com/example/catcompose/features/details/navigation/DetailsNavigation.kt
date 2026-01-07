@@ -1,6 +1,6 @@
 package com.example.catcompose.features.details.navigation
 
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation3.runtime.NavKey
 import com.example.catcompose.core.navigation.EntryProvider
 import com.example.catcompose.core.navigation.Navigator
