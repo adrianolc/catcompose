@@ -89,6 +89,7 @@ kotlinter = { id = "org.jmailen.kotlinter", version = "5.3.0" }
 # project plugins
 catcompose-hilt = { id = "catcompose.hilt" }
 catcompose-compose = { id = "catcompose.compose" }
+catcompose-android-application = { id = "catcompose.android.application" }
 catcompose-android-library = { id = "catcompose.android.library" }
 catcompose-feature = { id = "catcompose.feature" }
 catcompose-lint = { id = "catcompose.lint" }

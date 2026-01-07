@@ -44,5 +44,9 @@ gradlePlugin {
             id = libs.plugins.catcompose.lint.get().pluginId
             implementationClass = "LintPlugin"
         }
+        register("android-application") {
+            id = libs.plugins.catcompose.android.application.get().pluginId
+            implementationClass = "AndroidApplicationPlugin"
+        }
     }
 }
