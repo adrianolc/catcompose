@@ -4,9 +4,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.hilt.android)
     alias(libs.plugins.compose)
     alias(libs.plugins.kotlinter)
+    alias(libs.plugins.catcompose.hilt)
     alias(libs.plugins.catcompose.lint)
 }
 
@@ -56,9 +56,6 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.ui)
-
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.compiler)
 
     // modules dependencies
     implementation(projects.core.network)
