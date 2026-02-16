@@ -12,7 +12,6 @@ class AndroidApplicationPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             apply(plugin = "com.android.application")
-            apply(plugin = "org.jetbrains.kotlin.android")
 
             extensions.configure<ApplicationExtension> {
                 compileSdk = 36
@@ -31,18 +30,18 @@ class AndroidApplicationPlugin : Plugin<Project> {
                             "proguard-rules.pro"
                         )
                     }
-
-                    compileOptions {
-                        sourceCompatibility = JavaVersion.VERSION_17
-                        targetCompatibility = JavaVersion.VERSION_17
-                    }
                 }
 
-                extensions.configure<KotlinAndroidProjectExtension> {
-                    compilerOptions {
-                        jvmTarget.set(JvmTarget.JVM_17)
-                        freeCompilerArgs.add("-XXLanguage:+ExplicitBackingFields")
-                    }
+                compileOptions {
+                    sourceCompatibility = JavaVersion.VERSION_17
+                    targetCompatibility = JavaVersion.VERSION_17
+                }
+            }
+
+            extensions.configure<KotlinAndroidProjectExtension> {
+                compilerOptions {
+                    jvmTarget.set(JvmTarget.JVM_17)
+                    freeCompilerArgs.add("-XXLanguage:+ExplicitBackingFields")
                 }
             }
         }

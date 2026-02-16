@@ -11,7 +11,6 @@ class AndroidLibraryPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             apply(plugin = "com.android.library")
-            apply(plugin = "org.jetbrains.kotlin.android")
             apply(plugin = "org.jmailen.kotlinter")
 
             extensions.configure<LibraryExtension> {
@@ -31,24 +30,24 @@ class AndroidLibraryPlugin : Plugin<Project> {
                             "proguard-rules.pro"
                         )
                     }
-
-                    compileOptions {
-                        sourceCompatibility = JavaVersion.VERSION_17
-                        targetCompatibility = JavaVersion.VERSION_17
-                    }
                 }
 
-                extensions.configure<KotlinAndroidProjectExtension> {
-                    compilerOptions {
-                        jvmTarget.set(JvmTarget.JVM_17)
-                        optIn.add("kotlin.contracts.ExperimentalContracts")
-                        optIn.add("androidx.compose.material3.ExperimentalMaterial3Api")
-                        optIn.add("androidx.compose.material3.ExperimentalMaterial3ExpressiveApi")
-                        freeCompilerArgs.add("-XXLanguage:+ExplicitBackingFields")
-                    }
-
-                    explicitApi()
+                compileOptions {
+                    sourceCompatibility = JavaVersion.VERSION_17
+                    targetCompatibility = JavaVersion.VERSION_17
                 }
+            }
+
+            extensions.configure<KotlinAndroidProjectExtension> {
+                compilerOptions {
+                    jvmTarget.set(JvmTarget.JVM_17)
+                    optIn.add("kotlin.contracts.ExperimentalContracts")
+                    optIn.add("androidx.compose.material3.ExperimentalMaterial3Api")
+                    optIn.add("androidx.compose.material3.ExperimentalMaterial3ExpressiveApi")
+                    freeCompilerArgs.add("-XXLanguage:+ExplicitBackingFields")
+                }
+
+                explicitApi()
             }
         }
     }
